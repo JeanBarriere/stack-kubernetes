@@ -5,10 +5,11 @@ build:
   - imageName: asyncy/platform-engine
     workspace: ../platform-engine/
     docker: {}
+  - imageName: asyncy/platform-bootstrap
+    workspace: ../platform-bootstrap/
+    docker: {}
   local: {}
 deploy:
   kubectl:
     manifests:
-    - ./kubernetes/deployments/rabbitmq.yaml
-    - ./kubernetes/deployments/engine.yaml
-    - ./kubernetes/services/rabbitmq.yaml
+    - ./kubernetes/*/*
