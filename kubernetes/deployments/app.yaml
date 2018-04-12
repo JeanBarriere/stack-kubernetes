@@ -12,7 +12,7 @@ spec:
       containers:
         - name: app
           image: trinitronx/python-simplehttpserver
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           ports:
             - name: http
               containerPort: 8080
