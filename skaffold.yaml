@@ -1,0 +1,14 @@
+apiVersion: skaffold/v1alpha2
+kind: Config
+build:
+  artifacts:
+  - imageName: asyncy/platform-engine
+    workspace: ../platform-engine/
+    docker: {}
+  local: {}
+deploy:
+  kubectl:
+    manifests:
+    - ./kubernetes/deployments/rabbitmq.yaml
+    - ./kubernetes/deployments/engine.yaml
+    - ./kubernetes/services/rabbitmq.yaml
