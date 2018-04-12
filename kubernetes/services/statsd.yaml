@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: statsd
+  namespace: asyncy-platform
+  labels:
+    app: statsd
+spec:
+  ports:
+  - name: statsd-tcp
+    port: 8125
+    protocol: TCP
+    targetPort: 8125
+  - name: statsd-udp
+    port: 8125
+    protocol: UDP
+    targetPort: 8125
+  selector:
+    app: statsd

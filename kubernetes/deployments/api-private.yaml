@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: api-private
+  namespace: asyncy-platform
+spec:
+  template:
+    metadata:
+      labels:
+        app: api-private
+    spec:
+      containers:
+        - name: api-private
+          image: trinitronx/python-simplehttpserver
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+          resources:
+            limits:
+              cpu: 500m
+              memory: 32M
+            requests:
+              cpu: 100m
+              memory: 10M

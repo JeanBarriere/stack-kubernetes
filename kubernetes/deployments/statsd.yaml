@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: statsd
+  namespace: asyncy-platform
+spec:
+  template:
+    metadata:
+      labels:
+        app: statsd
+    spec:
+      containers:
+        - name: statsd
+          image: prom/statsd-exporter:v0.6.0
+          imagePullPolicy: Always
+          args: ["-statsd.listen-udp=:8125", "-statsd.listen-udp=:8125"]
+          ports:
+            - name: statsd
+              containerPort: 8125
+          resources:
+            limits:
+              cpu: 500m
+              memory: 32M
+            requests:
+              cpu: 100m
+              memory: 10M

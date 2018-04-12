@@ -1,0 +1,26 @@
+# k8s-app.yml
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: bootstrap
+  namespace: asyncy-platform
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: bootstrap
+    spec:
+      containers:
+      - name: platform-bootstrap
+        image: asyncy/platform-bootstrap
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 500m
+            memory: 32M
+          requests:
+            cpu: 100m
+            memory: 10M
