@@ -37,3 +37,12 @@ kubectl create clusterrolebinding myname-cluster-admin-binding --clusterrole=clu
 ```shell
 ./run.sh asyncy-install
 ```
+
+# Development
+
+Update your deployed application continuously
+
+* Watches Asyncy platform project source code for any changes and automatically runs a build and deploy when changes are detected. Asyncy platform projects are assumed to be checked out back one directory. See `skaffold.yaml` for configuration.
+```shell
+skaffold dev
+```
