@@ -92,6 +92,12 @@ asyncy_install() {
   echo "Asyncy is ready!"
 }
 
+asyncy_dev() {
+  check_skaffold
+  echo "Running Skaffold dev and watching for Asyncy platform changes..."
+  skaffold dev -f skaffold.yaml
+}
+
 asyncy_update() {
   check_kubectl
   check_skaffold
@@ -106,6 +112,7 @@ usage() {
   echo "Options:"
   echo "istio-install"
   echo "asyncy-install"
+  echo "asyncy-dev"
   echo "asyncy-update"
 }
 
@@ -121,6 +128,9 @@ main() {
         ;;
       asyncy-install)
         asyncy_install
+        ;;
+      asyncy-dev)
+        asyncy_dev
         ;;
       asyncy-update)
         asyncy_update
