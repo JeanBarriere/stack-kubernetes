@@ -9,12 +9,12 @@ Bootstrap the Asyncy Platform on Kubernetes
 
 # Install
 
-* Confirm that `kubectl` is set to the right context:
+* Confirm that `kubectl` is set to the right context
 ```shell
 kubectl config current-context
 ```
 
-* Check kubernetes cluster health:
+* Check kubernetes cluster health
 ```shell
 kubectl cluster-info
 ```
