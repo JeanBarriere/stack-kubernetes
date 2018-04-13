@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: mongodb
-  namespace: asyncy-platform
+  namespace: asyncy-system
 spec:
   template:
     metadata:
@@ -12,14 +12,14 @@ spec:
       containers:
         - name: mongodb
           image: mongo:3.6.3
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           ports:
             - name: mongo
               containerPort: 27017
           resources:
             limits:
-              cpu: 500m
-              memory: 256M
+              cpu: 50m
+              memory: 32M
             requests:
-              cpu: 100m
+              cpu: 10m
               memory: 10M

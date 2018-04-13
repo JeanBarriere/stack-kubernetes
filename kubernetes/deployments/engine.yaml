@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: engine
-  namespace: asyncy-platform
+  namespace: asyncy-system
 spec:
   template:
     metadata:
@@ -15,8 +15,8 @@ spec:
           imagePullPolicy: IfNotPresent
           resources:
             limits:
-              cpu: 500m
+              cpu: 50m
               memory: 64M
             requests:
-              cpu: 100m
+              cpu: 10m
               memory: 10M

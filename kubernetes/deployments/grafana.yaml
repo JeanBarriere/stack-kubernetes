@@ -1,25 +1,25 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: platform-grafana
-  namespace: asyncy-platform
+  name: grafana
+  namespace: asyncy-system
 spec:
   template:
     metadata:
       labels:
-        app: platform-grafana
+        app: grafana
     spec:
       containers:
-        - name: platform-grafana
+        - name: grafana
           image: asyncy/platform-grafana
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           ports:
             - name: http
               containerPort: 3000
           resources:
             limits:
-              cpu: 500m
+              cpu: 50m
               memory: 32M
             requests:
-              cpu: 100m
+              cpu: 10m
               memory: 10M

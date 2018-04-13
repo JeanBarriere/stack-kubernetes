@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: api-graphql
-  namespace: asyncy-platform
+  namespace: asyncy-system
 spec:
   template:
     metadata:

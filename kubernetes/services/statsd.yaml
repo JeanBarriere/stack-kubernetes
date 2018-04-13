@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: statsd
-  namespace: asyncy-platform
+  namespace: asyncy-system
   labels:
     app: statsd
 spec:

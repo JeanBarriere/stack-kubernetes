@@ -27,4 +27,4 @@ data:
     </match>
 metadata:
   name: fluentd-es-config
-  namespace: asyncy-platform
+  namespace: asyncy-system

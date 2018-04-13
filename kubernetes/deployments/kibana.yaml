@@ -2,9 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: kibana
-  namespace: asyncy-platform
-  labels:
-    app: kibana
+  namespace: asyncy-system
   annotations:
     sidecar.istio.io/inject: "false"
 spec:
@@ -16,12 +14,13 @@ spec:
       containers:
       - name: kibana
         image: docker.elastic.co/kibana/kibana-oss:6.1.1
+        imagePullPolicy: IfNotPresent
         resources:
           # need more cpu upon initialization, therefore burstable class
           limits:
-            cpu: 1000m
-          requests:
             cpu: 100m
+          requests:
+            cpu: 10m
         env:
           - name: ELASTICSEARCH_URL
             value: http://elasticsearch:9200

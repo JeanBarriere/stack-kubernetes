@@ -3,7 +3,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: bootstrap
-  namespace: asyncy-platform
+  namespace: asyncy-system
 spec:
   replicas: 1
   template:
@@ -12,15 +12,15 @@ spec:
         app: bootstrap
     spec:
       containers:
-      - name: platform-bootstrap
+      - name: bootstrap
         image: asyncy/platform-bootstrap
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
         resources:
           limits:
-            cpu: 500m
+            cpu: 50m
             memory: 32M
           requests:
-            cpu: 100m
+            cpu: 10m
             memory: 10M

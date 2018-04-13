@@ -2,13 +2,13 @@ apiVersion: v1
 kind: Service
 metadata:
   name: rabbitmq
-  namespace: asyncy-platform
+  namespace: asyncy-system
   labels:
     app: rabbitmq
 spec:
   ports:
   - port: 5672
     protocol: TCP
-    targetPort: ui
+    targetPort: 5672
   selector:
     app: rabbitmq

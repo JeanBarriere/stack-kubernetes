@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: postgres
-  namespace: asyncy-platform
+  namespace: asyncy-system
 spec:
   template:
     metadata:
@@ -12,14 +12,14 @@ spec:
       containers:
         - name: postgres
           image: postgres:10.3-alpine
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           ports:
             - name: postgres
               containerPort: 5432
           resources:
             limits:
-              cpu: 500m
-              memory: 512M
+              cpu: 50m
+              memory: 32M
             requests:
-              cpu: 100m
+              cpu: 10m
               memory: 10M

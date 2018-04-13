@@ -2,9 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: fluentd-es
-  namespace: asyncy-platform
-  labels:
-    app: fluentd-es
+  namespace: asyncy-system
   annotations:
     sidecar.istio.io/inject: "false"
 spec:
@@ -16,15 +14,16 @@ spec:
       containers:
       - name: fluentd-es
         image: gcr.io/google-containers/fluentd-elasticsearch:v2.0.1
+        imagePullPolicy: IfNotPresent
         env:
         - name: FLUENTD_ARGS
           value: --no-supervisor -q
         resources:
           limits:
-            memory: 500Mi
+            memory: 50Mi
           requests:
-            cpu: 100m
-            memory: 200Mi
+            cpu: 10m
+            memory: 32Mi
         volumeMounts:
         - name: config-volume
           mountPath: /etc/fluent/config.d

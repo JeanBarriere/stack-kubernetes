@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: elasticsearch
-  namespace: asyncy-platform
+  namespace: asyncy-system
   labels:
     app: elasticsearch
   annotations:
@@ -15,6 +15,7 @@ spec:
     spec:
       containers:
       - image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.1.1
+        imagePullPolicy: IfNotPresent
         name: elasticsearch
         resources:
           # need more cpu upon initialization, therefore burstable class
