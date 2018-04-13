@@ -19,6 +19,15 @@ kubectl config current-context
 kubectl cluster-info
 ```
 
+* GKE: Grant cluster-admin to your current identity
+```shell
+# Get identity
+gcloud info | grep Account
+
+# Grant cluster-admin to your identity
+kubectl create clusterrolebinding myname-cluster-admin-binding --clusterrole=cluster-admin --user=myname@example.org
+```
+
 * Install Istio - **optional (not recommended for development environments)**
 ```shell
 ./run.sh istio-install
