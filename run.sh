@@ -22,16 +22,6 @@ check_skaffold() {
   fi
 }
 
-kubectl_wrapper() {
-  args=$*
-  n=0
-  until [ $n -ge 10 ]; do
-    kubectl $args > /dev/null 2>&1 && break
-    n=$((n+1))
-    sleep 3
-  done
-}
-
 istio_install() {
   check_kubectl
   ISTIO_VERSION="0.7.1"
@@ -42,31 +32,31 @@ istio_install() {
 
   echo "Installing Istio..."
   # install core istio
-  kubectl_wrapper apply -f install/kubernetes/istio-auth.yaml > /dev/null
+  kubectl apply -f install/kubernetes/istio-auth.yaml > /dev/null
 
   # create signed cert for sidecar injection webhook
   ./install/kubernetes/webhook-create-signed-cert.sh --service istio-sidecar-injector --namespace istio-system --secret sidecar-injector-certs > /dev/null 2>&1
 
   # install sidecar injection configmap
-  kubectl_wrapper apply -f install/kubernetes/istio-sidecar-injector-configmap-release.yaml > /dev/null
+  kubectl apply -f install/kubernetes/istio-sidecar-injector-configmap-release.yaml > /dev/null
 
   # set caBundle that is used in the webhook
   ./install/kubernetes/webhook-patch-ca-bundle.sh < install/kubernetes/istio-sidecar-injector.yaml > install/kubernetes/istio-sidecar-injector-with-ca-bundle.yaml
 
   # install sidecar injector webhook
-  kubectl_wrapper apply -f install/kubernetes/istio-sidecar-injector-with-ca-bundle.yaml > /dev/null
+  kubectl apply -f install/kubernetes/istio-sidecar-injector-with-ca-bundle.yaml > /dev/null
 
   # prometheus
-  kubectl_wrapper apply -f install/kubernetes/addons/prometheus.yaml > /dev/null
+  kubectl apply -f install/kubernetes/addons/prometheus.yaml > /dev/null
 
   # grafana
-  kubectl_wrapper apply -f install/kubernetes/addons/grafana.yaml > /dev/null
+  kubectl apply -f install/kubernetes/addons/grafana.yaml > /dev/null
 
   # zipkin
-  kubectl_wrapper apply -f install/kubernetes/addons/zipkin.yaml > /dev/null
+  kubectl apply -f install/kubernetes/addons/zipkin.yaml > /dev/null
 
   # servicegraph
-  kubectl_wrapper apply -f install/kubernetes/addons/servicegraph.yaml > /dev/null
+  kubectl apply -f install/kubernetes/addons/servicegraph.yaml > /dev/null
 
   popd > /dev/null
   echo "Waiting for Istio to start..."
@@ -91,10 +81,10 @@ asyncy_install() {
   check_skaffold
   echo "Installing Asyncy..."
   # creating the asyncy namespace
-  kubectl_wrapper create namespace asyncy-system
+  kubectl create namespace asyncy-system
 
   # enabling istio sidecar injection
-  kubectl_wrapper label namespace asyncy-system istio-injection=enabled > /dev/null
+  kubectl label namespace asyncy-system istio-injection=enabled > /dev/null
 
   # deploying components
   skaffold run -f skaffold-deploy.yaml
