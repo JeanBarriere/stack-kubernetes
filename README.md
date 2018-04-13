@@ -4,8 +4,8 @@ Bootstrap the Asyncy Platform on Kubernetes
 # Prerequisites
 
 * An existing kubernetes cluster running at least version 1.9. See [https://kubernetes.io/docs/setup/](https://kubernetes.io/docs/setup/) for official instructions.
-* [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-* [skaffold](https://github.com/GoogleCloudPlatform/skaffold)
+* [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+* [Skaffold](https://github.com/GoogleCloudPlatform/skaffold)
 
 # Install
 
@@ -44,5 +44,13 @@ Update your deployed application continuously
 
 * Watches Asyncy platform project source code for any changes and automatically runs a build and deploy when changes are detected. Asyncy platform projects are assumed to be checked out back one directory. See `skaffold.yaml` for configuration.
 ```shell
-skaffold dev
+./run.sh asyncy-dev
+```
+
+# Deploy
+
+Run the Asyncy Skaffold pipeline once
+
+```shell
+./run.sh deploy
 ```
