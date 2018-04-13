@@ -2,11 +2,26 @@ apiVersion: skaffold/v1alpha2
 kind: Config
 build:
   artifacts:
+  - imageName: asyncy/platform-app
+    workspace: ../platform-app/
+    docker: {}
   - imageName: asyncy/platform-engine
     workspace: ../platform-engine/
     docker: {}
   - imageName: asyncy/platform-bootstrap
     workspace: ../platform-bootstrap/
+    docker: {}
+  - imageName: asyncy/platform-prometheus
+    workspace: ../platform-prometheus/
+    docker: {}
+  - imageName: asyncy/platform-fluentd
+    workspace: ../platform-fluentd/
+    docker: {}
+  - imageName: asyncy/platform-grafana
+    workspace: ../platform-grafana/
+    docker: {}
+  - imageName: asyncy/platform-kibana
+    workspace: ../platform-kibana/
     docker: {}
   local: {}
 deploy:
