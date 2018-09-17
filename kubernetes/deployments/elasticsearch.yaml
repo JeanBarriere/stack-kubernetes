@@ -24,8 +24,8 @@ spec:
           requests:
             cpu: 100m
         env:
-          - name: discovery.type
-            value: single-node
+        - name: discovery.type
+          value: single-node
         ports:
         - containerPort: 9200
           name: db

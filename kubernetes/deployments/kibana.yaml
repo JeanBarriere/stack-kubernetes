@@ -15,16 +15,16 @@ spec:
       - name: kibana
         image: docker.elastic.co/kibana/kibana-oss:6.1.1
         imagePullPolicy: IfNotPresent
-        resources:
-          # need more cpu upon initialization, therefore burstable class
-          limits:
-            cpu: 100m
-          requests:
-            cpu: 10m
-        env:
-          - name: ELASTICSEARCH_URL
-            value: http://elasticsearch:9200
+        # resources:
+        #   # need more cpu upon initialization, therefore burstable class
+        #   limits:
+        #     cpu: 100m
+        #   requests:
+        #     cpu: 10m
         ports:
         - containerPort: 5601
           name: ui
           protocol: TCP
+        env:
+          - name: ELASTICSEARCH_URL
+          value: http://elasticsearch:9200

@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: graphql
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/proxy-body-size: 2m
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "30"
+    ingress.kubernetes.io/configuration-snippet: |
+      more_set_headers "Access-Control-Allow-Origin: *";
+      more_set_headers "Access-Control-Allow-Headers: Content-Type";
+spec:
+  tls:
+  - hosts:
+    - api.asyncy.com
+  rules:
+  - host: api.asyncy.com
+    http:
+      paths:
+      - path: /graphql
+        backend:
+          serviceName: graphql
+          servicePort: 5000
+      - path: /graphiql
+        backend:
+          serviceName: graphql
+          servicePort: 5000
+      - path: /_postgraphile
+        backend:
+          serviceName: graphql
+          servicePort: 5000

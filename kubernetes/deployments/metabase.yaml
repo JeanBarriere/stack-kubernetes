@@ -4,22 +4,33 @@ metadata:
   name: metabase
   namespace: asyncy-system
 spec:
+  replicas: 1
   template:
     metadata:
       labels:
         app: metabase
     spec:
       containers:
-        - name: metabase
-          image: metabase/metabase
-          imagePullPolicy: IfNotPresent
-          ports:
-            - name: http
-              containerPort: 3000
-          resources:
-            limits:
-              cpu: 50m
-              memory: 32M
-            requests:
-              cpu: 10m
-              memory: 10M
+      - name: metabase
+        image: metabase/metabase
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 3000
+        # resources:
+        #   limits:
+        #     cpu: 50m
+        #     memory: 32M
+        #   requests:
+        #     cpu: 10m
+        #     memory: 10M
+        volumeMounts:
+        - mountPath: /tmp
+          name: metabase-data
+        env:
+        - name: "MB_DB_FILE"
+          value: "/tmp/metabase.db"
+      volumes:
+      - name: metabase-data
+        persistentVolumeClaim:
+          claimName: metabase-data

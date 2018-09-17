@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: engine
+  name: gateway
   namespace: asyncy-system
 spec:
   replicas: 1
@@ -10,17 +10,21 @@ spec:
   template:
     metadata:
       labels:
-        app: engine
+        app: gateway
     spec:
       # nodeSelector:
       #   role: workers
       containers:
-      - name: engine
-        image: asyncy/platform-engine
+      - name: gateway
+        image: asyncy/http
+        args:
+        - --debug
         imagePullPolicy: Always
         ports:
-        - name: http
-          containerPort: 8084
+        - name: public
+          containerPort: 8888
+        - name: internal
+          containerPort: 8889
         # resources:
         #   limits:
         #     cpu: 50m
@@ -29,12 +33,6 @@ spec:
         #     cpu: 10m
         #     memory: 10M
         env:
-        - name: LOGGER_NAME
-          value: asyncy
-        - name: LOGGER_LEVEL
-          value: debug
-        - name: ASYNCY_HTTP_GW_HOST
-          value: gateway
         - name: SENTRY_DSN
           valueFrom:
             secretKeyRef:

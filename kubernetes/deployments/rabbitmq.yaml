@@ -10,16 +10,16 @@ spec:
         app: rabbitmq
     spec:
       containers:
+      - name: rabbitmq
+        image: asyncy/platform-rabbitmq
+        imagePullPolicy: IfNotPresent
+        ports:
         - name: rabbitmq
-          image: asyncy/platform-rabbitmq
-          imagePullPolicy: IfNotPresent
-          ports:
-            - name: rabbitmq
-              containerPort: 5672
-          resources:
-            limits:
-              cpu: 50m
-              memory: 32M
-            requests:
-              cpu: 10m
-              memory: 10M
+          containerPort: 5672
+        # resources:
+        #   limits:
+        #     cpu: 50m
+        #     memory: 32M
+        #   requests:
+        #     cpu: 10m
+        #     memory: 10M

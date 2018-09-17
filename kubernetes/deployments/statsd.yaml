@@ -10,17 +10,19 @@ spec:
         app: statsd
     spec:
       containers:
+      - name: statsd
+        image: prom/statsd-exporter:v0.6.0
+        imagePullPolicy: IfNotPresent
+        args:
+        - -statsd.listen-udp=:8125
+        - -statsd.listen-udp=:8125
+        ports:
         - name: statsd
-          image: prom/statsd-exporter:v0.6.0
-          imagePullPolicy: IfNotPresent
-          args: ["-statsd.listen-udp=:8125", "-statsd.listen-udp=:8125"]
-          ports:
-            - name: statsd
-              containerPort: 8125
-          resources:
-            limits:
-              cpu: 50m
-              memory: 16M
-            requests:
-              cpu: 10m
-              memory: 10M
+          containerPort: 8125
+        # resources:
+        #   limits:
+        #     cpu: 50m
+        #     memory: 16M
+        #   requests:
+        #     cpu: 10m
+        #     memory: 10M
