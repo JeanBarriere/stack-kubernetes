@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: rabbitmq
-          image: rabbitmq:3.7.3-alpine
+          image: asyncy/platform-rabbitmq
           imagePullPolicy: IfNotPresent
           ports:
             - name: rabbitmq
