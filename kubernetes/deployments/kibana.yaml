@@ -27,4 +27,4 @@ spec:
           protocol: TCP
         env:
           - name: ELASTICSEARCH_URL
-          value: http://elasticsearch:9200
+            value: http://elasticsearch:9200
