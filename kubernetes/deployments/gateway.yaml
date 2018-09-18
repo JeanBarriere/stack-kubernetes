@@ -18,6 +18,10 @@ spec:
       - name: gateway
         image: asyncy/http
         args:
+        - python
+        - -m
+        - app.main
+        - --logging=debug
         - --debug
         imagePullPolicy: Always
         ports:
