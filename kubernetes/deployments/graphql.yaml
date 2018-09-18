@@ -38,4 +38,4 @@ spec:
           valueFrom:
             secretKeyRef:
               name: database-url
-              key: asyncy_authenticator
+              key: asyncy-authenticator
