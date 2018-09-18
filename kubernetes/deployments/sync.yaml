@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sync
+  namespace: asyncy-system
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: sync
+    spec:
+      # nodeSelector:
+      #   role: workers
+      containers:
+      - name: sync
+        image: asyncy/hub-sync-temp
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        # resources:
+        #   limits:
+        #     cpu: 50m
+        #     memory: 64M
+        #   requests:
+        #     cpu: 10m
+        #     memory: 10M
+        env:
+        - name: GITHUB_OAUTH
+          valueFrom:
+            secretKeyRef:
+              name: github
+              key: oauth_token
