@@ -33,3 +33,8 @@ spec:
             secretKeyRef:
               name: github
               key: oauth_token
+        - name: PG_CONNECTION_STRING
+          valueFrom:
+            secretKeyRef:
+              name: database-url
+              key: postgres
