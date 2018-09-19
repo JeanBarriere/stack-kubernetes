@@ -9,6 +9,7 @@ spec:
   tls:
   - hosts:
     - sync.asyncy.com
+    secretName: asyncy.com
   rules:
   - host: sync.asyncy.com
     http:

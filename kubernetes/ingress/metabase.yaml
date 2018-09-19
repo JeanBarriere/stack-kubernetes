@@ -11,6 +11,7 @@ spec:
   tls:
   - hosts:
     - metabase.asyncy.com
+    secretName: asyncy.com
   rules:
   - host: metabase.asyncy.com
     http:
