@@ -38,4 +38,4 @@ spec:
           valueFrom:
             secretKeyRef:
               name: database-url
-              key: postgres_conn_string  # todo: discuss authenticator, right now, using root creds for it
+              key: asyncy-authenticator
