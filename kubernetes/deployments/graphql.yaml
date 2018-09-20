@@ -38,4 +38,4 @@ spec:
           valueFrom:
             secretKeyRef:
               name: database-url
-              key: asyncy-authenticator
+              key: asyncy-authenticator  #todo: adding this broke RLS auth in the graphql api!
