@@ -4,6 +4,7 @@ metadata:
   name: sync
   annotations:
     kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.global-static-ip-name: api-asyncy-com-and-family
     ingress.kubernetes.io/rewrite-target: /
 spec:
   tls:
