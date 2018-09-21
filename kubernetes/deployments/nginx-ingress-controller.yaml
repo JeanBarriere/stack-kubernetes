@@ -55,4 +55,4 @@ spec:
         args:
         - /nginx-ingress-controller
         - --default-backend-service=$(POD_NAMESPACE)/nginx-ingress-default-backend
-        - --publish-service=$(POD_NAMESPACE)/nginx-ingress-lb
+        - --publish-service=$(POD_NAMESPACE)/nginx-ingress-controller
