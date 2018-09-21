@@ -99,7 +99,7 @@ asyncy_install_secrets() {
   CONNECTION_STRING_URI_AA="postgres://$PG_AA_USERNAME:$PG_AA_PASSWORD@$PG_HOST/$PG_DB_NAME"
   PG_HOST= PG_DB_NAME= PG_USERNAME= PG_PASSWORD= PG_AA_PASSWORD= PG_AA_USERNAME=
 
-  kubectl create secret generic database-url --from-literal=asyncy-authenticator="$CONNECTION_STRING_URI_AA" --from-literal=postgres="$CONNECTION_STRING" --from-literal=postgres_conn_string="$CONNECTION_STRING_URI"
+  kubectl create secret generic database-url --from-literal=authenticator-uri="$CONNECTION_STRING_URI_AA" --from-literal=root-dsn="$CONNECTION_STRING" --from-literal=root-uri="$CONNECTION_STRING_URI"
   CONNECTION_STRING= CONNECTION_STRING_URI= CONNECTION_STRING_URI_AA=
 
   kubectl create secret generic sentry --from-literal=sentry_dsn=$SENTRY_DSN

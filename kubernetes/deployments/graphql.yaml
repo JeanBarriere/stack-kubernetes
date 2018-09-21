@@ -33,9 +33,9 @@ spec:
           valueFrom:
             secretKeyRef:
               name: database-url
-              key: postgres_conn_string
+              key: root-uri
         - name: DATABASE_URL
           valueFrom:
             secretKeyRef:
               name: database-url
-              key: asyncy-authenticator
+              key: authenticator-uri

@@ -37,4 +37,4 @@ spec:
           valueFrom:
             secretKeyRef:
               name: database-url
-              key: postgres_conn_string
+              key: root-uri
