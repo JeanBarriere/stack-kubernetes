@@ -40,3 +40,8 @@ spec:
             secretKeyRef:
               name: sentry
               key: sentry_dsn
+        - name: POSTGRES
+          valueFrom:
+            secretKeyRef:
+              name: database-url
+              key: root-dsn

@@ -8,9 +8,11 @@ metadata:
 spec:
   ports:
   - port: 8888
+    name: external
     protocol: TCP
     targetPort: 8888
   - port: 8889
+    name: internal
     protocol: TCP
     targetPort: 8889
   selector:

@@ -4,15 +4,17 @@ metadata:
   name: gateway
   annotations:
     kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.global-static-ip-name: asyncy-and-asyncyapp-com
     ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/proxy-body-size: 100m
     nginx.ingress.kubernetes.io/proxy-read-timeout: "30"
 spec:
   tls:
   - hosts:
-    - *.asyncyapp.com
+    - "*.asyncyapp.com"
+    secretName: asyncyapp.com
   rules:
-  - host: *.asyncyapp.com
+  - host: "*.asyncyapp.com"
     http:
       paths:
       - path: /

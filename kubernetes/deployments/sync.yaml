@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: gateway
+  name: sync
   namespace: asyncy-system
 spec:
   replicas: 1
@@ -10,25 +10,16 @@ spec:
   template:
     metadata:
       labels:
-        app: gateway
+        app: sync
     spec:
       # nodeSelector:
       #   role: workers
       containers:
-      - name: gateway
-        image: asyncy/http
-        args:
-        - python
-        - -m
-        - app.main
-        - --logging=debug
-        - --debug
+      - name: sync
+        image: asyncy/hub-sync-temp
         imagePullPolicy: Always
         ports:
-        - name: public
-          containerPort: 8888
-        - name: internal
-          containerPort: 8889
+        - containerPort: 5000
         # resources:
         #   limits:
         #     cpu: 50m
@@ -37,8 +28,13 @@ spec:
         #     cpu: 10m
         #     memory: 10M
         env:
-        - name: SENTRY_DSN
+        - name: GITHUB_OAUTH
           valueFrom:
             secretKeyRef:
-              name: sentry
-              key: sentry_dsn
+              name: github
+              key: oauth_token
+        - name: PG_CONNECTION_STRING
+          valueFrom:
+            secretKeyRef:
+              name: database-url
+              key: root-uri

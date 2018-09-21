@@ -32,10 +32,10 @@ spec:
         - name: ROOT_DATABASE_URL
           valueFrom:
             secretKeyRef:
-              name: database_url
-              key: postgres
+              name: database-url
+              key: root-uri
         - name: DATABASE_URL
           valueFrom:
             secretKeyRef:
-              name: database_url
-              key: asyncy_authenticator
+              name: database-url
+              key: authenticator-uri
