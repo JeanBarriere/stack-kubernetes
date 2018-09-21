@@ -45,3 +45,5 @@ spec:
             secretKeyRef:
               name: database-url
               key: root-dsn
+        - name: ENGINE_HOST
+          value: engine
