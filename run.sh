@@ -112,6 +112,9 @@ asyncy_install_secrets() {
   read -p "Full path to privkey.pem (for *.asyncyapp.com): " PRIV_KEY
   read -p "Full path to fullchain.pem (for *.asyncyapp.com): " FULLCHAIN
   kubectl create secret tls asyncyapp.com --key $PRIV_KEY --cert $FULLCHAIN
+
+  read -p "GitHub OAuth Token (for the Hub): " GH_TOKEN
+  kubectl create secret generic github --from-literal=oauth_token=GH_TOKEN
 }
 
 asyncy_install() {
