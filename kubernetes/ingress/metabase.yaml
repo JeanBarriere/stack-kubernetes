@@ -4,7 +4,7 @@ metadata:
   name: metabase
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ingress.global-static-ip-name: api-asyncy-com-and-family
+    kubernetes.io/ingress.global-static-ip-name: asyncy-and-asyncyapp-com
     ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/proxy-body-size: 2m
     nginx.ingress.kubernetes.io/proxy-read-timeout: "30"
