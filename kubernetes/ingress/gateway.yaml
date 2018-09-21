@@ -10,9 +10,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - asyncyapp.com
+    - "*.asyncyapp.com"
+    secretName: asyncyapp.com
   rules:
-  - host: asyncyapp.com
+  - host: "*.asyncyapp.com"
     http:
       paths:
       - path: /
