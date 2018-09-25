@@ -45,5 +45,15 @@ spec:
             secretKeyRef:
               name: database-url
               key: root-dsn
+        - name: CLUSTER_CERT
+          valueFrom:
+            secretKeyRef:
+              name: engine-sa-creds
+              key: ca.crt
+        - name: CLUSTER_AUTH_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: engine-sa-creds
+              key: token
         - name: ENGINE_HOST
           value: engine
