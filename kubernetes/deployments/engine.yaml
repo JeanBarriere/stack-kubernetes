@@ -56,4 +56,4 @@ spec:
               name: engine-sa-creds
               key: token
         - name: ENGINE_HOST
-          value: engine
+          value: engine.asyncy-system.svc.cluster.local
