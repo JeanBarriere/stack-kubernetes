@@ -126,7 +126,7 @@ asyncy_install() {
   # create RBAC role and cluster binding for Tiller - the Helm server
   kubectl create serviceaccount --namespace kube-system tiller
   kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
-  kubectl create -f kubernetes-pre-init/tiller-cluster-role-binding.yaml
+  kubectl create -f kubernetes-pre-init/role_bindings/tiller.yaml
   helm init --service-account tiller --upgrade
   while ! kubectl get pod -n kube-system | grep tiller-deploy | grep Running &> /dev/null; do
     echo "Waiting for the tiller-deploy pod to be ready..."
@@ -137,6 +137,10 @@ asyncy_install() {
   echo "Installing Asyncy..."
   # creating the asyncy namespace
   kubectl create namespace asyncy-system
+
+  kubectl create -f kubernetes-pre-init/service_accounts/engine.yaml
+  kubectl create -f kubernetes-pre-init/role_bindings/engine.yaml
+  kubectl create -f kubernetes-pre-init/secrets/engine.yaml
 
   # create the secrets required
   asyncy_install_secrets
