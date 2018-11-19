@@ -105,8 +105,8 @@ asyncy_install_secrets() {
   kubectl create secret generic sentry --from-literal=sentry_dsn=$SENTRY_DSN
   SENTRY_DSN=
 
-  read -p "Full path to privkey.pem (for api.asyncy.com): " PRIV_KEY
-  read -p "Full path to fullchain.pem (for api.asyncy.com): " FULLCHAIN
+  read -p "Full path to privkey.pem (for *.asyncy.com): " PRIV_KEY
+  read -p "Full path to fullchain.pem (for *.asyncy.com): " FULLCHAIN
   kubectl create secret tls asyncy.com --key $PRIV_KEY --cert $FULLCHAIN
 
   read -p "Full path to privkey.pem (for *.asyncyapp.com): " PRIV_KEY

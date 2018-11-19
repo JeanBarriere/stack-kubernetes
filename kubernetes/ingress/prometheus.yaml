@@ -12,6 +12,7 @@ spec:
   tls:
   - hosts:
     - prometheus.asyncy.com
+    secretName: asyncy.com
   rules:
   - host: prometheus.asyncy.com
     http:
