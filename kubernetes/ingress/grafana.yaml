@@ -12,6 +12,7 @@ spec:
   tls:
   - hosts:
     - grafana.asyncy.com
+    secretName: asyncy.com
   rules:
   - host: grafana.asyncy.com
     http:
