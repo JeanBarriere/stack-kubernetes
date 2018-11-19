@@ -8,7 +8,12 @@ metadata:
 spec:
   ports:
   - port: 8084
+    name: story-endpoint
     protocol: TCP
     targetPort: 8084
+  - port: 8085
+    name: metrics-endpoint
+    protocol: TCP
+    targetPort: 8085
   selector:
     app: engine
