@@ -86,21 +86,23 @@ istio_install() {
 
 asyncy_install_secrets() {
   read -p "Sentry DSN: " SENTRY_DSN
-  read -p "Postgres Host: " PG_HOST
-  read -p "Postgres DB Name: " PG_DB_NAME
-  read -p "Postgres DB Username: " PG_USERNAME
-  read -p "Postgres DB Password: " -s PG_PASSWORD
+  read -p "PostgreSQL Host: " PG_HOST
+  read -p "PostgreSQL DB Name: " PG_DB_NAME
+  read -p "PostgreSQL DB Username: " PG_USERNAME
+  read -p "PostgreSQL DB Password: " -s PG_PASSWORD
   echo
-  read -p "Postgres DB Username (for asyncy_authenticator): " PG_AA_USERNAME
-  read -p "Postgres DB Password (for asyncy_authenticator): " -s PG_AA_PASSWORD
+  read -p "PostgreSQL DB Username (for asyncy_authenticator): " PG_AA_USERNAME
+  read -p "PostgreSQL DB Password (for asyncy_authenticator): " -s PG_AA_PASSWORD
+  echo
+  read -p "MySQL/PostgreSQL DB URI for Grafana (mysql://... or postgres://...): " -s PG_CONN_GRAFANA_URI
   echo
   CONNECTION_STRING="options=--search_path=app_public,app_hidden,app_private,public dbname=$PG_DB_NAME host=$PG_HOST user=$PG_USERNAME password=$PG_PASSWORD"
   CONNECTION_STRING_URI="postgres://$PG_USERNAME:$PG_PASSWORD@$PG_HOST/$PG_DB_NAME"
   CONNECTION_STRING_URI_AA="postgres://$PG_AA_USERNAME:$PG_AA_PASSWORD@$PG_HOST/$PG_DB_NAME"
   PG_HOST= PG_DB_NAME= PG_USERNAME= PG_PASSWORD= PG_AA_PASSWORD= PG_AA_USERNAME=
 
-  kubectl create secret generic database-url --from-literal=authenticator-uri="$CONNECTION_STRING_URI_AA" --from-literal=root-dsn="$CONNECTION_STRING" --from-literal=root-uri="$CONNECTION_STRING_URI"
-  CONNECTION_STRING= CONNECTION_STRING_URI= CONNECTION_STRING_URI_AA=
+  kubectl create secret generic database-url --from-literal=authenticator-uri="$CONNECTION_STRING_URI_AA" --from-literal=root-dsn="$CONNECTION_STRING" --from-literal=root-uri="$CONNECTION_STRING_URI" --from-literal=grafana-uri="$PG_CONN_GRAFANA_URI"
+  CONNECTION_STRING= CONNECTION_STRING_URI= CONNECTION_STRING_URI_AA= PG_CONN_GRAFANA_URI=
 
   kubectl create secret generic sentry --from-literal=sentry_dsn=$SENTRY_DSN
   SENTRY_DSN=
