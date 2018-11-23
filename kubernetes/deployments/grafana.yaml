@@ -12,7 +12,7 @@ spec:
       containers:
       - name: grafana
         image: asyncy/platform-grafana
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         ports:
         - name: http
           containerPort: 3000

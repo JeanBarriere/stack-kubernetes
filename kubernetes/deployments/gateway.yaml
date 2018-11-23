@@ -23,7 +23,7 @@ spec:
         - app.main
         - --logging=debug
         - --debug
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         ports:
         - name: public
           containerPort: 8888
