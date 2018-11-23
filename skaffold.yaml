@@ -1,30 +1,22 @@
-apiVersion: skaffold/v1alpha2
+apiVersion: skaffold/v1alpha5
 kind: Config
 build:
   artifacts:
-  - imageName: asyncy/platform-app
-    workspace: ../platform-app/
+  - image: asyncy/platform-engine
+    context: ../platform-engine/
     docker: {}
-  - imageName: asyncy/platform-engine
-    workspace: ../platform-engine/
+  - image: asyncy/platform-synapse
+    context: ../platform-synapse/
     docker: {}
-  - imageName: asyncy/platform-bootstrap
-    workspace: ../platform-bootstrap/
-    docker: {}
-  - imageName: asyncy/platform-prometheus
-    workspace: ../platform-prometheus/
-    docker: {}
-  - imageName: asyncy/platform-fluentd
-    workspace: ../platform-fluentd/
-    docker: {}
-  - imageName: asyncy/platform-grafana
-    workspace: ../platform-grafana/
-    docker: {}
-  - imageName: asyncy/platform-kibana
-    workspace: ../platform-kibana/
+  - image: asyncy/http
+    context: ../http/
     docker: {}
   local: {}
 deploy:
   kubectl:
     manifests:
-    - ./kubernetes/*/*
+    - ./kubernetes-pre-init/*/*
+    - ./kubernetes/*/gateway.yaml
+    - ./kubernetes/*/synapse.yaml
+    - ./kubernetes/*/engine.yaml
+    - ./kubernetes/*/nginx-ingress-controller.yaml
