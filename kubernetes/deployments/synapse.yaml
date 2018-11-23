@@ -14,6 +14,7 @@ spec:
     spec:
       # nodeSelector:
       #   role: workers
+      serviceAccountName: synapse
       containers:
       - name: synapse
         image: asyncy/platform-synapse
@@ -34,13 +35,3 @@ spec:
             secretKeyRef:
               name: database-url
               key: root-dsn
-        - name: CLUSTER_CERT
-          valueFrom:
-            secretKeyRef:
-              name: synapse-sa-creds
-              key: ca.crt
-        - name: CLUSTER_AUTH_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: synapse-sa-creds
-              key: token
