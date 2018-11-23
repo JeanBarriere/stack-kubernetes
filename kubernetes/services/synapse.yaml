@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: synapse
+  namespace: asyncy-system
+  labels:
+    app: synapse
+spec:
+  ports:
+  - port: 80
+    name: main
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: synapse

@@ -144,6 +144,10 @@ asyncy_install() {
   kubectl create -f kubernetes-pre-init/role_bindings/engine.yaml
   kubectl create -f kubernetes-pre-init/secrets/engine.yaml
 
+  kubectl create -f kubernetes-pre-init/service_accounts/synapse.yaml
+  kubectl create -f kubernetes-pre-init/role_bindings/synapse.yaml
+  kubectl create -f kubernetes-pre-init/secrets/synapse.yaml
+
   # create the secrets required
   asyncy_install_secrets
 
