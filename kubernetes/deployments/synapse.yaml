@@ -17,7 +17,7 @@ spec:
       serviceAccountName: synapse
       containers:
       - name: synapse
-        image: asyncy/platform-synapse:v0.1.1
+        image: asyncy/platform-synapse:v0.1.2
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
