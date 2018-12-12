@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hub-api
+  namespace: asyncy-system
+  labels:
+    app: hub-api
+spec:
+  ports:
+  - port: 8080
+    name: main
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: hub-api

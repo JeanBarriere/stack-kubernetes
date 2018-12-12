@@ -7,7 +7,7 @@ metadata:
     kubernetes.io/ingress.global-static-ip-name: asyncy-and-asyncyapp-com
     ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/proxy-body-size: 100m
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "30"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "120"
 spec:
   tls:
   - hosts:
