@@ -119,10 +119,10 @@ asyncy_install_secrets() {
   read -p "GitHub OAuth Token (for the Hub): " GH_TOKEN
   read -p "GitHub OAuth Client ID (for hub-api): " GH_CLIENT_ID
   read -p "GitHub OAuth Client Secret (for hub-api): " GH_CLIENT_SECRET
-  kubectl create secret generic github --from-literal=oauth_token=GH_TOKEN --from-literal=client_id=GH_CLIENT_ID --from-literal=client_secret=GH_CLIENT_SECRET
+  kubectl create secret generic github --from-literal=oauth_token="$GH_TOKEN" --from-literal=client_id="$GH_CLIENT_ID" --from-literal=client_secret="$GH_CLIENT_SECRET"
 
   read -p "JWT cookie secret key (for hub-api): " JWT_SECRET
-  kubectl create secret generic hub --from-literal=jwt_secret=JWT_SECRET
+  kubectl create secret generic hub --from-literal=jwt_secret="$JWT_SECRET"
 }
 
 asyncy_install() {
