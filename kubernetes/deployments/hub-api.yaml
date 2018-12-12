@@ -1,0 +1,42 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hub-api
+  namespace: asyncy-system
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: hub-api
+    spec:
+      containers:
+      - name: hub-api
+        image: asyncy/hub-api
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 8080
+        env:
+        - name: PG_CONN_STRING
+          valueFrom:
+            secretKeyRef:
+              name: database-url
+              key: jdbc-root-uri
+        - name: GITHUB_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: github
+              key: client_id
+        - name: GITHUB_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: github
+              key: client_secret
+        - name: JWT_COOKIE_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: hub
+              key: jwt_secret

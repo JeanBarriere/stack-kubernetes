@@ -98,11 +98,12 @@ asyncy_install_secrets() {
   echo
   CONNECTION_STRING="options=--search_path=app_public,app_hidden,app_private,public dbname=$PG_DB_NAME host=$PG_HOST user=$PG_USERNAME password=$PG_PASSWORD"
   CONNECTION_STRING_URI="postgres://$PG_USERNAME:$PG_PASSWORD@$PG_HOST/$PG_DB_NAME"
+  CONNECTION_STRING_URI_JDBC="jdbc:postgresql://$PG_HOST/$PG_DB_NAME?user=$PG_USERNAME&password=$PG_PASSWORD&currentSchema=app_public,app_private,app_hidden,app_runtime,public"
   CONNECTION_STRING_URI_AA="postgres://$PG_AA_USERNAME:$PG_AA_PASSWORD@$PG_HOST/$PG_DB_NAME"
   PG_HOST= PG_DB_NAME= PG_USERNAME= PG_PASSWORD= PG_AA_PASSWORD= PG_AA_USERNAME=
 
-  kubectl create secret generic database-url --from-literal=authenticator-uri="$CONNECTION_STRING_URI_AA" --from-literal=root-dsn="$CONNECTION_STRING" --from-literal=root-uri="$CONNECTION_STRING_URI" --from-literal=grafana-uri="$PG_CONN_GRAFANA_URI"
-  CONNECTION_STRING= CONNECTION_STRING_URI= CONNECTION_STRING_URI_AA= PG_CONN_GRAFANA_URI=
+  kubectl create secret generic database-url --from-literal=authenticator-uri="$CONNECTION_STRING_URI_AA" --from-literal=root-dsn="$CONNECTION_STRING" --from-literal=root-uri="$CONNECTION_STRING_URI" --from-literal=grafana-uri="$PG_CONN_GRAFANA_URI" --from-literal=jdbc-root-uri="$CONNECTION_STRING_URI_JDBC"
+  CONNECTION_STRING= CONNECTION_STRING_URI= CONNECTION_STRING_URI_AA= PG_CONN_GRAFANA_URI= CONNECTION_STRING_URI_JDBC=
 
   kubectl create secret generic sentry --from-literal=sentry_dsn=$SENTRY_DSN
   SENTRY_DSN=
@@ -116,7 +117,12 @@ asyncy_install_secrets() {
   kubectl create secret tls asyncyapp.com --key $PRIV_KEY --cert $FULLCHAIN
 
   read -p "GitHub OAuth Token (for the Hub): " GH_TOKEN
-  kubectl create secret generic github --from-literal=oauth_token=GH_TOKEN
+  read -p "GitHub OAuth Client ID (for hub-api): " GH_CLIENT_ID
+  read -p "GitHub OAuth Client Secret (for hub-api): " GH_CLIENT_SECRET
+  kubectl create secret generic github --from-literal=oauth_token=GH_TOKEN --from-literal=client_id=GH_CLIENT_ID --from-literal=client_secret=GH_CLIENT_SECRET
+
+  read -p "JWT cookie secret key (for hub-api): " JWT_SECRET
+  kubectl create secret generic hub --from-literal=jwt_secret=JWT_SECRET
 }
 
 asyncy_install() {
