@@ -1,0 +1,46 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: nginx-proxy-web-and-blog
+  namespace: asyncy-system
+data:
+  asyncy.com.conf: |-
+    upstream product {
+        ip_hash;
+        server asyncy-homepage.netlify.com:443;
+    }
+
+    upstream blog {
+        ip_hash;
+        server ghost.blog.asyncy.com:443;
+    }
+
+    server {
+        listen 8089;
+        server_name blog.asyncy.com;
+        server_tokens off;
+        return 301 https://asyncy.com/blog$request_uri;
+    }
+
+    server {
+        listen 8089;
+        server_name www.asyncy.com;
+        server_tokens off;
+        return 301 https://asyncy.com$request_uri;
+    }
+
+    server {
+        listen 8089;
+        server_name asyncy.com;
+        server_tokens off;
+
+        location /blog {
+            proxy_set_header Host asyncy.com;
+            proxy_pass https://blog;
+        }
+
+        location / {
+            proxy_set_header Host asyncy.com;
+            proxy_pass https://product;
+        }
+    }

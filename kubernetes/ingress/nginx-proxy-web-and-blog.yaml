@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-proxy-web-and-blog
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.global-static-ip-name: asyncy-and-asyncyapp-com
+    ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/proxy-body-size: 20m
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "120"
+spec:
+  tls:
+  - hosts:
+    - asyncy.com
+    - blog.asyncy.com
+    secretName: asyncy.com
+  rules:
+  - host: asyncy.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nginx-proxy-web-and-blog
+          servicePort: 8089
+  - host: blog.asyncy.com
+    http:
+      paths:
+        - path: /
+          backend:
+            serviceName: nginx-proxy-web-and-blog
+            servicePort: 8089
