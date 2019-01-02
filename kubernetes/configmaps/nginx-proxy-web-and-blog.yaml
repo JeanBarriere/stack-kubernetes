@@ -12,7 +12,7 @@ data:
 
     upstream blog {
         ip_hash;
-        server asyncy-homepage.netlify.com:443; # todo
+        server ghost.blog.asyncy.com:443;
     }
 
     server {
