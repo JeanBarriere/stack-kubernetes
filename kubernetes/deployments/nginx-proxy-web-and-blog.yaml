@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-proxy-web-and-blog
+  namespace: asyncy-system
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx-proxy-web-and-blog
+    spec:
+      volumes:
+      - name: config-volume
+        configMap:
+          name: nginx-proxy-web-and-blog
+      containers:
+      - image: nginx:1.14
+        name: nginx
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/nginx/conf.d
+        ports:
+        - containerPort: 8089
+          hostPort: 8089
