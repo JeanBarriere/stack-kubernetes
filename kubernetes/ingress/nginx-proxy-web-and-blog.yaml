@@ -13,6 +13,7 @@ spec:
   - hosts:
     - asyncy.com
     - blog.asyncy.com
+    - www.asyncy.com
     secretName: asyncy.com
   rules:
   - host: asyncy.com
@@ -22,10 +23,17 @@ spec:
         backend:
           serviceName: nginx-proxy-web-and-blog
           servicePort: 8089
+  - host: www.asyncy.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nginx-proxy-web-and-blog
+          servicePort: 8089
   - host: blog.asyncy.com
     http:
       paths:
-        - path: /
-          backend:
-            serviceName: nginx-proxy-web-and-blog
-            servicePort: 8089
+      - path: /
+        backend:
+          serviceName: nginx-proxy-web-and-blog
+          servicePort: 8089
