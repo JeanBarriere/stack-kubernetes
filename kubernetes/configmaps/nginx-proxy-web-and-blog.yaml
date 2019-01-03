@@ -36,6 +36,9 @@ data:
 
         location /blog {
             proxy_set_header Host asyncy.com;
+            # The following is not a secret, but just an ID that can be checked
+            # on the other side, to keep the crawlers at bay.
+            proxy_set_header X-Blog-Proxy-ID 082wZ6iX;
             proxy_pass https://blog;
         }
 
