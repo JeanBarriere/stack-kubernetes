@@ -16,7 +16,7 @@ spec:
       #   role: workers
       containers:
       - name: engine
-        image: asyncy/platform-engine:v0.2.5
+        image: asyncy/platform-engine:v0.3.0
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
