@@ -16,7 +16,7 @@ spec:
       #   role: workers
       containers:
       - name: gateway
-        image: asyncy/http:v0.1.0
+        image: asyncy/http:v0.2.0
         args:
         - python
         - -m
