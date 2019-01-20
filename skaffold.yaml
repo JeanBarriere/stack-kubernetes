@@ -4,19 +4,20 @@ build:
   artifacts:
   - image: asyncy/platform-engine
     context: ../platform-engine/
-    docker: {}
+    docker:
+      dockerfile: Dockerfile
   - image: asyncy/platform-synapse
     context: ../platform-synapse/
-    docker: {}
+    docker:
+      dockerfile: Dockerfile
   - image: asyncy/http
     context: ../http/
-    docker: {}
+    docker:
+      dockerfile: Dockerfile
   local: {}
 deploy:
   kubectl:
     manifests:
-    - ./kubernetes-pre-init/*/*
     - ./kubernetes/*/gateway.yaml
     - ./kubernetes/*/synapse.yaml
     - ./kubernetes/*/engine.yaml
-    - ./kubernetes/*/nginx-ingress-controller.yaml
