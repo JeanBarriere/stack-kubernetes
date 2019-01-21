@@ -1,6 +1,31 @@
 apiVersion: skaffold/v1alpha5
 kind: Config
 build:
+  artifacts:
+  - image: asyncy/platform-engine
+    context: ../platform-engine/
+    docker:
+      dockerfile: Dockerfile
+  - image: asyncy/platform-synapse
+    context: ../platform-synapse/
+    docker:
+      dockerfile: Dockerfile
+  - image: asyncy/http
+    context: ../http/
+    docker:
+      dockerfile: Dockerfile
+  - image: asyncy/hub-api
+    context: ../hub-api/
+    docker:
+      dockerfile: Dockerfile
+  - image: asyncy/hub-sync-temp
+    context: ../hub-sync-temp/
+    docker:
+      dockerfile: Dockerfile
+  - image: asyncy/platform-graphql
+    context: ../platform-graphql/
+    docker:
+      dockerfile: Dockerfile
   local: {}
 deploy:
   kubectl:
