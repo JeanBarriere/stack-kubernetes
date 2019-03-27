@@ -9,7 +9,7 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: 2m
     nginx.ingress.kubernetes.io/proxy-read-timeout: "30"
     nginx.ingress.kubernetes.io/configuration-snippet: |
-      more_set_headers "Access-Control-Allow-Origin: localhost:8080";
+      more_set_headers "Access-Control-Allow-Origin: http://localhost:8080";
       more_set_headers "Access-Control-Allow-Headers: Content-Type";
 spec:
   tls:
