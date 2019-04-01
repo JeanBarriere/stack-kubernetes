@@ -16,6 +16,13 @@ spec:
           name: nginx-proxy-web-and-blog
       containers:
       - image: nginx:1.14
+        resources:
+          limits:
+            #             cpu: 500m
+            memory: 48M
+          requests:
+            #             cpu: 100m
+            memory: 48M
         name: nginx
         volumeMounts:
         - name: config-volume
