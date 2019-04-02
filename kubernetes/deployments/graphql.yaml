@@ -21,13 +21,13 @@ spec:
         ports:
         - name: http
           containerPort: 5000
-        # resources:
-        #   limits:
-        #     cpu: 500m
-        #     memory: 32M
-        #   requests:
-        #     cpu: 100m
-        #     memory: 10M
+        resources:
+          limits:
+#            cpu: 500m
+            memory: 48M
+          requests:
+#            cpu: 100m
+            memory: 48M
         env:
         - name: ROOT_DATABASE_URL
           valueFrom:

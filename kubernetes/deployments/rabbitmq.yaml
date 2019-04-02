@@ -4,6 +4,7 @@ metadata:
   name: rabbitmq
   namespace: asyncy-system
 spec:
+  replicas: 0
   template:
     metadata:
       labels:

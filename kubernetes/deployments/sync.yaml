@@ -20,13 +20,13 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
-        # resources:
-        #   limits:
-        #     cpu: 50m
-        #     memory: 64M
-        #   requests:
-        #     cpu: 10m
-        #     memory: 10M
+        resources:
+          limits:
+#            cpu: 50m
+            memory: 100M
+          requests:
+#            cpu: 10m
+            memory: 100M
         env:
         - name: GITHUB_OAUTH
           valueFrom:

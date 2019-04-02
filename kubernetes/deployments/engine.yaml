@@ -21,13 +21,13 @@ spec:
         ports:
         - name: http
           containerPort: 8084
-        # resources:
-        #   limits:
-        #     cpu: 50m
-        #     memory: 64M
-        #   requests:
-        #     cpu: 10m
-        #     memory: 10M
+        resources:
+          limits:
+#            cpu: 50m
+            memory: 256M
+          requests:
+#            cpu: 10m
+            memory: 256M
         env:
         - name: LOGGER_NAME
           value: asyncy

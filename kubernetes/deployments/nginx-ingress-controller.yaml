@@ -26,6 +26,13 @@ spec:
       containers:
       - image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.18.0
         name: nginx-ingress-controller
+        resources:
+          limits:
+            #             cpu: 500m
+            memory: 128M
+          requests:
+            #             cpu: 100m
+            memory: 128M
         readinessProbe:
           httpGet:
             path: /healthz

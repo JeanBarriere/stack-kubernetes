@@ -29,13 +29,13 @@ spec:
           containerPort: 8888
         - name: internal
           containerPort: 8889
-        # resources:
-        #   limits:
-        #     cpu: 50m
-        #     memory: 64M
-        #   requests:
-        #     cpu: 10m
-        #     memory: 10M
+        resources:
+          limits:
+#            cpu: 50m
+            memory: 64M
+          requests:
+#            cpu: 10m
+            memory: 64M
         env:
         - name: SENTRY_DSN
           valueFrom:
