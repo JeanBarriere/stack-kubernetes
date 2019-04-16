@@ -15,6 +15,9 @@ data:
     }
 
     filter {
+      if [kubernetes][labels][logstash-enabled] != "true" {
+        drop { }
+      }
     }
 
     output {
