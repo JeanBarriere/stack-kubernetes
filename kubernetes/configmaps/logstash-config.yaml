@@ -110,6 +110,10 @@ data:
     # Refer to https://github.com/elastic/logstash/blob/master/config/logstash.yml
   pipelines.yml: |-
     # Refer to https://github.com/elastic/logstash/blob/master/config/pipelines.yml
+
+    - pipeline.id: all_in_config_dir
+      queue.type: persisted
+      path.config: "/usr/share/logstash/config/*.conf"
   logstash.conf: |-
     # Most configuration is taken from the examples at
     # https://www.elastic.co/guide/en/logstash/6.3/logstash-config-for-filebeat-modules.html
