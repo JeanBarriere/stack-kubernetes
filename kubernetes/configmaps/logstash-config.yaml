@@ -132,7 +132,7 @@ data:
 
     output {
           file {
-            path => "/tmp/logstash-all.log"
+            path => "/dev/null"
           }
        #   elasticsearch {
        #       hosts => ["http://elasticsearch.{{ namespace }}.svc.cluster.local:9200"]
