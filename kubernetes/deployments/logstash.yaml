@@ -23,7 +23,7 @@ spec:
               value: /tmp/logstash-gc.log
           resources:
             limits:
-              memory: 512M
+              memory: 768M
           ports:
             - containerPort: 5044
           volumeMounts:
