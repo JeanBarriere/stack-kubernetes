@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: asyncy-system
+  name: logstash
+  labels:
+    app: logstash
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: logstash
+  template:
+    metadata:
+      labels:
+        app: logstash
+    spec:
+      containers:
+        - name: logstash
+          image: docker.elastic.co/logstash/logstash:7.0.0
+          ports:
+            - containerPort: 5044
+          volumeMounts:
+            - name: logstash-conf
+              mountPath: /usr/share/logstash/pipeline
+      # spec.template.spec.volumes
+      volumes:
+        - name: logstash-conf
+          configMap:
+            name: logstash-conf

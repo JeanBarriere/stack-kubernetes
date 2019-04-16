@@ -1,0 +1,29 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: logstash-conf
+  namespace: asyncy-system
+data:
+  logstash.conf: |-
+    # Most configuration is taken from the examples at
+    # https://www.elastic.co/guide/en/logstash/6.3/logstash-config-for-filebeat-modules.html
+
+    input {
+        beats {
+            port => 5044
+        }
+    }
+
+    filter {
+    }
+
+    output {
+          file {
+            path => "/tmp/logstash-all.log"
+          }
+       #   elasticsearch {
+       #       hosts => ["http://elasticsearch.{{ namespace }}.svc.cluster.local:9200"]
+       #       manage_template => false
+       #       index => "%{[@metadata][beat]}-%{[@metadata][version]}-%{+YYYY.MM.dd}"
+       #   }
+    }
