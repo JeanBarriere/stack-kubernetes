@@ -11,6 +11,7 @@ spec:
     metadata:
       labels:
         app: synapse
+        logstash-enabled: true
     spec:
       # nodeSelector:
       #   role: workers

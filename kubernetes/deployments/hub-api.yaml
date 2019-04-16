@@ -11,6 +11,7 @@ spec:
     metadata:
       labels:
         app: hub-api
+        logstash-enabled: true
     spec:
       containers:
       - name: hub-api
