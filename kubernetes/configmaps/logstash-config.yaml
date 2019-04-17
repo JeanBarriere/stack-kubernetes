@@ -131,14 +131,14 @@ data:
     }
 
     output {
-          file {
-            path => "/dev/null"
-          }
-       #   elasticsearch {
-       #       hosts => ["http://elasticsearch.{{ namespace }}.svc.cluster.local:9200"]
-       #       manage_template => false
-       #       index => "%{[@metadata][beat]}-%{[@metadata][version]}-%{+YYYY.MM.dd}"
+       #   file {
+       #     path => "/dev/null"
        #   }
+          elasticsearch {
+              hosts => ["http://elasticsearch.asyncy-system.svc.cluster.local:9200"]
+              manage_template => false
+              index => "%{[@metadata][beat]}-%{[@metadata][version]}-%{+YYYY.MM.dd}"
+          }
     }
   jvm.options: |-
     # Seeded from https://github.com/elastic/logstash/blob/master/config/jvm.options
