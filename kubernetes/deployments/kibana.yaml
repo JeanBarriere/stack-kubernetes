@@ -6,7 +6,7 @@ metadata:
   annotations:
     sidecar.istio.io/inject: "false"
 spec:
-  replicas: 0
+  replicas: 1
   template:
     metadata:
       labels:
@@ -14,18 +14,21 @@ spec:
     spec:
       containers:
       - name: kibana
-        image: docker.elastic.co/kibana/kibana-oss:6.1.1
+        image: docker.elastic.co/kibana/kibana:7.0.0
         imagePullPolicy: IfNotPresent
-        # resources:
-        #   # need more cpu upon initialization, therefore burstable class
-        #   limits:
-        #     cpu: 100m
-        #   requests:
-        #     cpu: 10m
+        resources:
+          limits:
+            memory: 512M
         ports:
         - containerPort: 5601
           name: ui
           protocol: TCP
         env:
-          - name: ELASTICSEARCH_URL
+          - name: SERVER_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: SERVER_HOST
+            value: "0.0.0.0"
+          - name: ELASTICSEARCH_HOSTS
             value: http://elasticsearch:9200
