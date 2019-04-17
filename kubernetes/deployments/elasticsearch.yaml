@@ -45,7 +45,7 @@ spec:
         name: elasticsearch
         resources:
           limits:
-            cpu: 900m
+            memory: 900M
         env:
         - name: discovery.type
           value: single-node
