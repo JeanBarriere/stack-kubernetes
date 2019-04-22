@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: logstash
-          image: docker.elastic.co/logstash/logstash:7.0.0
+          image: asyncy/logstash-ex
           env:
             - name: LS_GC_LOG_FILE
               value: /tmp/logstash-gc.log
