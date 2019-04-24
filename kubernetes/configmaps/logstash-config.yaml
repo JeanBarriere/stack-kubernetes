@@ -144,6 +144,16 @@ data:
           remove_field => ["message"]
         }
       }
+
+      if [json_message] && [json_message][app_id] {
+        mutate {
+          copy => {"%{[json_message][app_id]}" => "app_id"}
+        }
+      } else {
+        mutate {
+          copy => {"%{[kubernetes][namespace]}" => "app_id"}
+        }
+      }
     }
 
     output {
@@ -153,7 +163,8 @@ data:
           elasticsearch {
               hosts => ["http://elasticsearch.asyncy-system.svc.cluster.local:9200"]
               manage_template => false
-              index => "%{[@metadata][beat]}-%{[@metadata][version]}-%{+YYYY.MM.dd}"
+              #index => "%{[@metadata][beat]}-%{[@metadata][version]}-%{+YYYY.MM.dd}"
+              index => "app-%{[app_id]}-%{+YYYY.MM.dd}"
           }
 
           websocket {
