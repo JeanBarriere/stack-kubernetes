@@ -139,7 +139,7 @@ data:
         target => "json_message"
       }
 
-      if [json_message] != null {
+      if [json_message] != nil {
         mutate {
           remove_field => ["message"]
         }
