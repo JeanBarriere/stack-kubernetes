@@ -136,7 +136,13 @@ data:
       json {
         skip_on_invalid_json => true
         source => "message"
-        target => "message"
+        target => "json_message"
+      }
+
+      if [json_message] != null {
+        mutate {
+          remove_field => ["message"]
+        }
       }
     }
 
