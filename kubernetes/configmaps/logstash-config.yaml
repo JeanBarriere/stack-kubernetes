@@ -147,11 +147,11 @@ data:
 
       if [json_message] and [json_message][app_id] {
         mutate {
-          copy => {"%{[json_message][app_id]}" => "app_id"}
+          copy => { [json_message][app_id] => "app_id" }
         }
       } else {
         mutate {
-          copy => {"%{[kubernetes][namespace]}" => "app_id"}
+          copy => { [kubernetes][namespace] => "app_id" }
         }
       }
     }
