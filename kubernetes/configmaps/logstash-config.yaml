@@ -199,12 +199,12 @@ data:
     -Djruby.jit.threshold=0
 
     ## GC logging
-    -XX:+PrintGCDetails
-    -XX:+PrintGCTimeStamps
-    -XX:+PrintGCDateStamps
-    -XX:+PrintClassHistogram
-    -XX:+PrintTenuringDistribution
-    -XX:+PrintGCApplicationStoppedTime
+    #-XX:+PrintGCDetails
+    #-XX:+PrintGCTimeStamps
+    #-XX:+PrintGCDateStamps
+    #-XX:+PrintClassHistogram
+    #-XX:+PrintTenuringDistribution
+    #-XX:+PrintGCApplicationStoppedTime
 
     # log GC status to a file with time stamps
     # ensure the directory exists
