@@ -139,6 +139,10 @@ data:
               manage_template => false
               index => "%{[@metadata][beat]}-%{[@metadata][version]}-%{+YYYY.MM.dd}"
           }
+
+          websocket {
+              id => "F545193C-C542-4342-83E2-9F6E60C415CC"
+          }
     }
   jvm.options: |-
     # Seeded from https://github.com/elastic/logstash/blob/master/config/jvm.options
