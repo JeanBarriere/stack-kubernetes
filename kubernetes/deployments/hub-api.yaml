@@ -32,16 +32,26 @@ spec:
             secretKeyRef:
               name: database-url
               key: jdbc-root-uri
-        - name: GITHUB_CLIENT_ID
+        - name: GITHUB_CLIENT_APP_ID
           valueFrom:
             secretKeyRef:
               name: github
-              key: client_id
-        - name: GITHUB_CLIENT_SECRET
+              key: app_client_id
+        - name: GITHUB_CLIENT_APP_SECRET
           valueFrom:
             secretKeyRef:
               name: github
-              key: client_secret
+              key: app_client_secret
+        - name: GITHUB_APP_ID
+          valueFrom:
+            secretKeyRef:
+              name: github
+              key: app_id
+        - name: PEM_PRIVATE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: github
+              key: app_pem_private_key
         - name: JWT_COOKIE_SECRET_KEY
           valueFrom:
             secretKeyRef:
