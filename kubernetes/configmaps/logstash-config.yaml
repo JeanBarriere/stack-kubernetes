@@ -134,6 +134,7 @@ data:
       }
 
       json {
+        skip_on_invalid_json => true
         source => "message"
         target => "message"
       }
