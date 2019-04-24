@@ -145,7 +145,7 @@ data:
         }
       }
 
-      if [json_message] && [json_message][app_id] {
+      if [json_message] and [json_message][app_id] {
         mutate {
           copy => {"%{[json_message][app_id]}" => "app_id"}
         }
