@@ -4,15 +4,15 @@ metadata:
   name: sync
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ingress.global-static-ip-name: asyncy-and-asyncyapp-com
+    kubernetes.io/ingress.global-static-ip-name: storyscript-and-storyscriptapp
     ingress.kubernetes.io/rewrite-target: /
 spec:
   tls:
   - hosts:
-    - sync.asyncy.com
-    secretName: asyncy.com
+    - sync.storyscript.io
+    secretName: storyscript.io
   rules:
-  - host: sync.asyncy.com
+  - host: sync.storyscript.io
     http:
       paths:
       - path: /

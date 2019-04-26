@@ -4,7 +4,7 @@ metadata:
   name: graphql
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ingress.global-static-ip-name: asyncy-and-asyncyapp-com
+    kubernetes.io/ingress.global-static-ip-name: storyscript-and-storyscriptapp
     ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/proxy-body-size: 2m
     nginx.ingress.kubernetes.io/proxy-read-timeout: "30"
@@ -14,10 +14,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - api.asyncy.com
-    secretName: asyncy.com
+    - api.storyscript.io
+    secretName: storyscript.io
   rules:
-  - host: api.asyncy.com
+  - host: api.storyscript.io
     http:
       paths:
       - path: /graphql

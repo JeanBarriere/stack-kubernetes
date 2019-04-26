@@ -4,17 +4,17 @@ metadata:
   name: metabase
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ingress.global-static-ip-name: asyncy-and-asyncyapp-com
+    kubernetes.io/ingress.global-static-ip-name: storyscript-and-storyscriptapp
     ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/proxy-body-size: 2m
     nginx.ingress.kubernetes.io/proxy-read-timeout: "30"
 spec:
   tls:
   - hosts:
-    - metabase.asyncy.com
-    secretName: asyncy.com
+    - metabase.storyscript.io
+    secretName: storyscript.io
   rules:
-  - host: metabase.asyncy.com
+  - host: metabase.storyscript.io
     http:
       paths:
       - path: /
