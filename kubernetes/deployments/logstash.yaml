@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: asyncy-system
+  name: logstash
+  labels:
+    app: logstash
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: logstash
+  template:
+    metadata:
+      labels:
+        app: logstash
+    spec:
+      containers:
+        - name: logstash
+          image: asyncy/logstash-ex
+          env:
+            - name: LS_GC_LOG_FILE
+              value: /tmp/logstash-gc.log
+          resources:
+            limits:
+              memory: 768M
+          ports:
+            - containerPort: 5044
+          volumeMounts:
+            - name: logstash-config
+              mountPath: /usr/share/logstash/config
+      # spec.template.spec.volumes
+      volumes:
+        - name: logstash-config
+          configMap:
+            name: logstash-config

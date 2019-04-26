@@ -11,6 +11,7 @@ spec:
     metadata:
       labels:
         app: engine
+        logstash-enabled: "true"
     spec:
       # nodeSelector:
       #   role: workers
@@ -31,6 +32,8 @@ spec:
         env:
         - name: LOGGER_NAME
           value: asyncy
+        - name: LOG_FORMAT_JSON
+          value: "True"
         - name: LOGGER_LEVEL
           value: debug
         - name: ASYNCY_HTTP_GW_HOST

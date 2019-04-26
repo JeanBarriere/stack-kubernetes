@@ -1,6 +1,7 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: engine
+  name: filebeat
   namespace: asyncy-system
-automountServiceAccountToken: false
+  labels:
+    k8s-app: filebeat

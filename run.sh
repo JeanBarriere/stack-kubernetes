@@ -146,6 +146,10 @@ asyncy_install() {
   # creating the asyncy namespace
   kubectl create namespace asyncy-system
 
+  kubectl create -f kubernetes-pre-init/cluster_roles/filebeat.yaml
+  kubectl create -f kubernetes-pre-init/service_accounts/filebeat.yaml
+  kubectl create -f kubernetes-pre-init/role_bindings/filebeat.yaml
+
   kubectl create -f kubernetes-pre-init/service_accounts/engine.yaml
   kubectl create -f kubernetes-pre-init/role_bindings/engine.yaml
   kubectl create -f kubernetes-pre-init/secrets/engine.yaml
