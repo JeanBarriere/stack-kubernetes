@@ -18,9 +18,17 @@ spec:
     - docs.asyncy.com
     - hub.asyncy.com
     - api.hub.asyncy.com
+    - "*.asyncyapp.com"
     secretName: storyscript.io
   rules:
   - host: asyncy.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nginx-proxy-web-and-blog
+          servicePort: 8089
+  - host: "*.asyncyapp.com"
     http:
       paths:
       - path: /
