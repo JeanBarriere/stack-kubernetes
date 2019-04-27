@@ -26,6 +26,13 @@ spec:
         backend:
           serviceName: nginx-proxy-web-and-blog
           servicePort: 8089
+  - host: api.hub.asyncy.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nginx-proxy-web-and-blog
+          servicePort: 8089
   - host: hub.asyncy.com
     http:
       paths:
