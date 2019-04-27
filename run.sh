@@ -108,13 +108,13 @@ asyncy_install_secrets() {
   kubectl create secret generic sentry --from-literal=sentry_dsn=$SENTRY_DSN
   SENTRY_DSN=
 
-  read -p "Full path to privkey.pem (for *.asyncy.com): " PRIV_KEY
-  read -p "Full path to fullchain.pem (for *.asyncy.com): " FULLCHAIN
-  kubectl create secret tls asyncy.com --key $PRIV_KEY --cert $FULLCHAIN
+  read -p "Full path to privkey.pem (for *.storyscript.io): " PRIV_KEY
+  read -p "Full path to fullchain.pem (for *.storyscript.io): " FULLCHAIN
+  kubectl create secret tls storyscript.io --key $PRIV_KEY --cert $FULLCHAIN
 
-  read -p "Full path to privkey.pem (for *.asyncyapp.com): " PRIV_KEY
-  read -p "Full path to fullchain.pem (for *.asyncyapp.com): " FULLCHAIN
-  kubectl create secret tls asyncyapp.com --key $PRIV_KEY --cert $FULLCHAIN
+  read -p "Full path to privkey.pem (for *.storyscriptapp.com): " PRIV_KEY
+  read -p "Full path to fullchain.pem (for *.storyscriptapp.com): " FULLCHAIN
+  kubectl create secret tls storyscriptapp.com --key $PRIV_KEY --cert $FULLCHAIN
 
   read -p "GitHub OAuth Token (for the Hub): " GH_TOKEN
   read -p "GitHub OAuth Client ID (for hub-api): " GH_CLIENT_ID

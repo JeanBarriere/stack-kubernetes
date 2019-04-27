@@ -33,6 +33,27 @@ data:
         listen 8089;
         server_name asyncy.com;
         server_tokens off;
+        return 301 https://storyscript.io$request_uri;
+    }
+
+    server {
+        listen 8089;
+        server_tokens off;
+        server_name ~^(.*)\.asyncy\.com$;
+        return 301 https://$1.storyscript.io$request_uri;
+    }
+
+    server {
+        listen 8089;
+        server_tokens off;
+        server_name api.hub.asyncy.com;
+        return 301 https://api.hub.storyscript.io$request_uri;
+    }
+
+    server {
+        listen 8089;
+        server_name storyscript.io;
+        server_tokens off;
 
         location /blog {
             proxy_set_header Host asyncy.com;
@@ -43,7 +64,7 @@ data:
         }
 
         location / {
-            proxy_set_header Host asyncy.com;
+            proxy_set_header Host storyscript.io;
             proxy_pass https://product;
         }
     }
