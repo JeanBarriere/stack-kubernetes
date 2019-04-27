@@ -15,9 +15,25 @@ spec:
   tls:
   - hosts:
     - api.storyscript.io
+    - api.asyncy.com
     secretName: storyscript.io
   rules:
   - host: api.storyscript.io
+    http:
+      paths:
+      - path: /graphql
+        backend:
+          serviceName: graphql
+          servicePort: 5000
+      - path: /graphiql
+        backend:
+          serviceName: graphql
+          servicePort: 5000
+      - path: /_postgraphile
+        backend:
+          serviceName: graphql
+          servicePort: 5000
+  - host: api.asyncy.com
     http:
       paths:
       - path: /graphql
