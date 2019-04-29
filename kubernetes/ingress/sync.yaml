@@ -10,9 +10,17 @@ spec:
   tls:
   - hosts:
     - sync.storyscript.io
+    - sync.asyncy.com
     secretName: storyscript.io
   rules:
   - host: sync.storyscript.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: sync
+          servicePort: 5000
+  - host: sync.asyncy.com
     http:
       paths:
       - path: /
