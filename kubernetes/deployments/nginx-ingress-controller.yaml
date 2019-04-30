@@ -62,5 +62,5 @@ spec:
         args:
         - /nginx-ingress-controller
         - --default-backend-service=$(POD_NAMESPACE)/nginx-ingress-default-backend
-        - --default-ssl-certificate=$(POD_NAMESPACE)/asyncyapp.com
+        - --default-ssl-certificate=$(POD_NAMESPACE)/storyscriptapp.com
         - --publish-service=$(POD_NAMESPACE)/nginx-ingress-controller
