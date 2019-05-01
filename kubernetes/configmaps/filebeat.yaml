@@ -29,3 +29,8 @@ data:
 
     output.logstash:
       hosts: ["logstash.asyncy-system.svc.cluster.local:5044"]
+
+    queue.mem:
+      events: 4096
+      flush.min_events: 512
+      flush.timeout: 0s
