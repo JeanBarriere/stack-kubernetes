@@ -26,7 +26,7 @@ spec:
             - -jar
             - /app/target/log-streamer-1.0-SNAPSHOT-jar-with-dependencies.jar
           ports:
-            - name: websocket_port
+            - name: websocket-port
               containerPort: 4444
           resources:
             limits:
