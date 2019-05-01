@@ -26,6 +26,10 @@ build:
     context: ../platform-graphql/
     docker:
       dockerfile: Dockerfile
+  - image: asyncy/logstreamer
+    context: ../logstreamer/
+    docker:
+      dockerfile: Dockerfile
   local: {}
 deploy:
   kubectl:
