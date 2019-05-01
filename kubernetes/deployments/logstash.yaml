@@ -26,6 +26,9 @@ spec:
               memory: 768M
           ports:
             - containerPort: 5044
+              name: beats_incoming
+            - containerPort: 3232
+              name: websocket_port
           volumeMounts:
             - name: logstash-config
               mountPath: /usr/share/logstash/config
