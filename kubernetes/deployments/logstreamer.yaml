@@ -30,7 +30,7 @@ spec:
               containerPort: 4444
           resources:
             limits:
-              memory: 64M
+              memory: 100M
           env:
             - name: LOGSTASH_HOST
               value: logstash
