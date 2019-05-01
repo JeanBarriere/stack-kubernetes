@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: logstreamer
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.global-static-ip-name: storyscript-and-storyscriptapp
+    nginx.ingress.kubernetes.io/proxy-body-size: 2m
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+spec:
+  tls:
+    - hosts:
+        - logs.storyscript.io
+      secretName: storyscript.io
+  rules:
+    - host: logs.storyscript.io
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: logstreamer
+              servicePort: 4444
