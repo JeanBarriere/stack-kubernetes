@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: logstreamer
+  namespace: asyncy-system
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: logstreamer
+        logstash-enabled: "true"
+    spec:
+      # nodeSelector:
+      #   role: workers
+      containers:
+        - name: logstreamer
+          image: asyncy/logstreamer
+          imagePullPolicy: IfNotPresent
+          args:
+            - java
+            - -Xms64m
+            - -Xmx64m
+            - -jar
+            - /app/target/log-streamer-1.0-SNAPSHOT-jar-with-dependencies.jar
+          ports:
+            - name: websocket_port
+              containerPort: 4444
+          resources:
+            limits:
+              memory: 100M
+          env:
+            - name: LOGSTASH_HOST
+              value: logstash
+            - name: LOGSTASH_PORT
+              value: "3232"

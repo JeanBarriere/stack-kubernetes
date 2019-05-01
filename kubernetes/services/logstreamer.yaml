@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: logstreamer
+  namespace: asyncy-system
+  labels:
+    app: logstreamer
+spec:
+  ports:
+    - port: 4444
+      name: websocket-listener
+      protocol: TCP
+      targetPort: 3232
+  selector:
+    app: logstreamer
