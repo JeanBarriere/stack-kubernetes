@@ -145,7 +145,8 @@ data:
         }
       }
 
-      if [json_message] and [json_message][app_id] {
+      # Trust json_message.app_id only if this log originates from the asyncy-system namespace.
+      if [kubernetes][namespace] == "asyncy-system" and [json_message] and [json_message][app_id] {
         mutate {
           copy => { "[json_message][app_id]" => "app_id" }
         }
