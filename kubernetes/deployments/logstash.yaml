@@ -23,7 +23,7 @@ spec:
               value: /tmp/logstash-gc.log
           resources:
             limits:
-              memory: 768M
+              memory: 1024M
           ports:
             - containerPort: 5044
               name: beats-incoming
