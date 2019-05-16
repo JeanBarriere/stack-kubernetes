@@ -32,6 +32,8 @@ spec:
             limits:
               memory: 100M
           env:
+            - name: DEBUG
+              value: "true"
             - name: LOGSTASH_HOST
               value: logstash
             - name: LOGSTASH_PORT
