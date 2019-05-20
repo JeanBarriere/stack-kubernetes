@@ -21,8 +21,8 @@ spec:
           imagePullPolicy: IfNotPresent
           args:
             - java
-            - -Xms64m
-            - -Xmx64m
+            - -Xms128m
+            - -Xmx128m
             - -jar
             - /app/target/log-streamer-1.0-SNAPSHOT-jar-with-dependencies.jar
           ports:
@@ -38,7 +38,7 @@ spec:
             periodSeconds: 10
           resources:
             limits:
-              memory: 100M
+              memory: 256M
           env:
             - name: DEBUG
               value: "true"
