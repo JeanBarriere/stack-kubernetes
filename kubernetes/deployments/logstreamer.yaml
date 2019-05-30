@@ -11,7 +11,7 @@ spec:
     metadata:
       labels:
         app: logstreamer
-        logstash-enabled: "true"
+        logstash-enabled: "false"
     spec:
       # nodeSelector:
       #   role: workers
