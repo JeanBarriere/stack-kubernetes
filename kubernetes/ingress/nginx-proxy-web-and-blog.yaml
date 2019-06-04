@@ -13,6 +13,7 @@ spec:
   - hosts:
     - asyncy.com
     - blog.asyncy.com
+    - status.asyncy.com
     - www.asyncy.com
     - storyscript.io
     - docs.asyncy.com
@@ -44,6 +45,13 @@ spec:
           serviceName: nginx-proxy-web-and-blog
           servicePort: 8089
   - host: hub.asyncy.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nginx-proxy-web-and-blog
+          servicePort: 8089
+  - host: status.asyncy.com
     http:
       paths:
       - path: /

@@ -60,6 +60,13 @@ data:
     server {
         listen 8089;
         server_tokens off;
+        server_name status.asyncy.com;
+        return 301 https://status.storyscript.io$request_uri;
+    }
+
+    server {
+        listen 8089;
+        server_tokens off;
         server_name storyscri.pt;
         return 301 https://storyscript.io$request_uri;
     }
