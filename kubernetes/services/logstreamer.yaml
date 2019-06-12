@@ -11,5 +11,9 @@ spec:
       name: websocket-listener
       protocol: TCP
       targetPort: 4444
+    - port: 8080
+      name: control-port
+      protocol: TCP
+      targetPort: 8080
   selector:
     app: logstreamer

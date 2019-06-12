@@ -21,3 +21,7 @@ spec:
             backend:
               serviceName: logstreamer
               servicePort: 4444
+          - path: /health
+            backend:
+              serviceName: logstreamer
+              servicePort: 8080
