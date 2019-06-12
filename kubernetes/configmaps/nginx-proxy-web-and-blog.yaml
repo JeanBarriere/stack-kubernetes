@@ -45,6 +45,20 @@ data:
 
     server {
         listen 8089;
+        server_name storyscript.com;
+        server_tokens off;
+        return 307 https://storyscript.io$request_uri;
+    }
+
+    server {
+        listen 8089;
+        server_tokens off;
+        server_name ~^(.*)\.storyscript\.com$;
+        return 307 https://$1.storyscript.io$request_uri;
+    }
+
+    server {
+        listen 8089;
         server_tokens off;
         server_name ~^(.*)\.asyncyapp\.com$;
         return 301 https://$1.storyscriptapp.com$request_uri;
