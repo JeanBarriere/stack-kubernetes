@@ -1,0 +1,57 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: engine-prod
+  namespace: asyncy-system
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: engine-prod
+        logstash-enabled: "true"
+    spec:
+      containers:
+        - name: engine-prod
+          image: asyncy/platform-engine-prod
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8084
+          resources:
+            limits:
+              #            cpu: 50m
+              memory: 256M
+            requests:
+              #            cpu: 10m
+              memory: 256M
+          envFrom:
+            - configMapRef:
+                name: engine-common
+          env:
+            - name: APP_ENVIRONMENT
+              value: PRODUCTION
+            - name: SENTRY_DSN
+              valueFrom:
+                secretKeyRef:
+                  name: sentry
+                  key: sentry_dsn
+            - name: POSTGRES
+              valueFrom:
+                secretKeyRef:
+                  name: database-url
+                  key: root-dsn
+            - name: CLUSTER_CERT
+              valueFrom:
+                secretKeyRef:
+                  name: engine-sa-creds
+                  key: ca.crt
+            - name: CLUSTER_AUTH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: engine-sa-creds
+                  key: token
+            - name: ENGINE_HOST
+              value: engine-prod.asyncy-system.svc.cluster.local
