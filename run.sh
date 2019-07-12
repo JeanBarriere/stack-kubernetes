@@ -96,14 +96,22 @@ asyncy_install_secrets() {
   echo
   read -p "MySQL/PostgreSQL DB URI for Grafana (mysql://... or postgres://...): " -s PG_CONN_GRAFANA_URI
   echo
-  CONNECTION_STRING="options=--search_path=app_public,app_hidden,app_private,public dbname=$PG_DB_NAME host=$PG_HOST user=$PG_USERNAME password=$PG_PASSWORD"
+  SEARCH_PATH="app_public,app_hidden,app_private,app_runtime,public"
+  CONNECTION_STRING="options=--search_path=${SEARCH_PATH} dbname=$PG_DB_NAME host=$PG_HOST user=$PG_USERNAME password=$PG_PASSWORD"
   CONNECTION_STRING_URI="postgres://$PG_USERNAME:$PG_PASSWORD@$PG_HOST/$PG_DB_NAME"
-  CONNECTION_STRING_URI_JDBC="jdbc:postgresql://$PG_HOST/$PG_DB_NAME?user=$PG_USERNAME&password=$PG_PASSWORD&currentSchema=app_public,app_private,app_hidden,app_runtime,public"
+  CONNECTION_STRING_URI_WITH_SEARCH_PATH="${CONNECTION_STRING_URI}?search_path=${SEARCH_PATH}"
+  CONNECTION_STRING_URI_JDBC="jdbc:postgresql://$PG_HOST/$PG_DB_NAME?user=$PG_USERNAME&password=$PG_PASSWORD&currentSchema=${SEARCH_PATH}"
   CONNECTION_STRING_URI_AA="postgres://$PG_AA_USERNAME:$PG_AA_PASSWORD@$PG_HOST/$PG_DB_NAME"
   PG_HOST= PG_DB_NAME= PG_USERNAME= PG_PASSWORD= PG_AA_PASSWORD= PG_AA_USERNAME=
 
-  kubectl create secret generic database-url --from-literal=authenticator-uri="$CONNECTION_STRING_URI_AA" --from-literal=root-dsn="$CONNECTION_STRING" --from-literal=root-uri="$CONNECTION_STRING_URI" --from-literal=grafana-uri="$PG_CONN_GRAFANA_URI" --from-literal=jdbc-root-uri="$CONNECTION_STRING_URI_JDBC"
-  CONNECTION_STRING= CONNECTION_STRING_URI= CONNECTION_STRING_URI_AA= PG_CONN_GRAFANA_URI= CONNECTION_STRING_URI_JDBC=
+  kubectl create secret generic database-url \
+        --from-literal=authenticator-uri="$CONNECTION_STRING_URI_AA" \
+        --from-literal=root-dsn="$CONNECTION_STRING" \
+        --from-literal=root-uri="$CONNECTION_STRING_URI" \
+        --from-literal=root-uri-with-search-path="${CONNECTION_STRING_URI_WITH_SEARCH_PATH}" \
+        --from-literal=grafana-uri="$PG_CONN_GRAFANA_URI" \
+        --from-literal=jdbc-root-uri="$CONNECTION_STRING_URI_JDBC"
+  CONNECTION_STRING= CONNECTION_STRING_URI= CONNECTION_STRING_URI_AA= PG_CONN_GRAFANA_URI= CONNECTION_STRING_URI_JDBC= CONNECTION_STRING_URI_WITH_SEARCH_PATH=
 
   kubectl create secret generic sentry --from-literal=sentry_dsn=$SENTRY_DSN
   SENTRY_DSN=
