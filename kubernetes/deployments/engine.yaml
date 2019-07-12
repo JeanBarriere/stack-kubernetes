@@ -47,7 +47,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: database-url
-              key: root-uri
+              key: root-uri-with-search-path
         - name: CLUSTER_CERT
           valueFrom:
             secretKeyRef:
