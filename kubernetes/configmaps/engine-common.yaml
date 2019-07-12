@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: engine-common
+  namespace: asyncy-system
+data:
+  LOGGER_NAME: asyncy
+  LOG_FORMAT_JSON: "True"
+  LOGGER_LEVEL: debug
+  ASYNCY_HTTP_GW_HOST: gateway

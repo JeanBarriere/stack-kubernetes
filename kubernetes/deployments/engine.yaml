@@ -13,8 +13,6 @@ spec:
         app: engine
         logstash-enabled: "true"
     spec:
-      # nodeSelector:
-      #   role: workers
       containers:
       - name: engine
         image: asyncy/platform-engine
@@ -29,15 +27,12 @@ spec:
           requests:
 #            cpu: 10m
             memory: 256M
+        envFrom:
+          - configMapRef:
+              name: engine-common
         env:
-        - name: LOGGER_NAME
-          value: asyncy
-        - name: LOG_FORMAT_JSON
-          value: "True"
-        - name: LOGGER_LEVEL
-          value: debug
-        - name: ASYNCY_HTTP_GW_HOST
-          value: gateway
+        - name: APP_ENVIRONMENT
+          value: STAGING
         - name: SENTRY_DSN
           valueFrom:
             secretKeyRef:

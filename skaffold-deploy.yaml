@@ -3,7 +3,11 @@ kind: Config
 build:
   artifacts:
   - image: asyncy/platform-engine
-    context: ../platform-engine/
+    context: ../platform-engine/  # This is typically the master branch.
+    docker:
+      dockerfile: Dockerfile
+  - image: asyncy/platform-engine-prod
+    context: ../platform-engine-prod/  # This is the production branch.
     docker:
       dockerfile: Dockerfile
   - image: asyncy/platform-synapse
