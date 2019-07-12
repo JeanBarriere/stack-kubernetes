@@ -96,7 +96,7 @@ asyncy_install_secrets() {
   echo
   read -p "MySQL/PostgreSQL DB URI for Grafana (mysql://... or postgres://...): " -s PG_CONN_GRAFANA_URI
   echo
-  SEARCH_PATH="app_public,app_hidden,app_private,public"
+  SEARCH_PATH="app_public,app_hidden,app_private,app_runtime,public"
   CONNECTION_STRING="options=--search_path=${SEARCH_PATH} dbname=$PG_DB_NAME host=$PG_HOST user=$PG_USERNAME password=$PG_PASSWORD"
   CONNECTION_STRING_URI="postgres://$PG_USERNAME:$PG_PASSWORD@$PG_HOST/$PG_DB_NAME"
   CONNECTION_STRING_URI_WITH_SEARCH_PATH="${CONNECTION_STRING_URI}?search_path=${SEARCH_PATH}"
