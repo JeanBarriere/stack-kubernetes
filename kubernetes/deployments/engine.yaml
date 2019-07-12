@@ -38,11 +38,11 @@ spec:
             secretKeyRef:
               name: sentry
               key: sentry_dsn
-        - name: POSTGRES
+        - name: POSTGRES_URI
           valueFrom:
             secretKeyRef:
               name: database-url
-              key: root-dsn
+              key: root-uri-with-search-path
         - name: CLUSTER_CERT
           valueFrom:
             secretKeyRef:
