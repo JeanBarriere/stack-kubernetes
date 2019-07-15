@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: teamcity
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.global-static-ip-name: storyscript-and-storyscriptapp
+    ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/proxy-body-size: 2m
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "30"
+spec:
+  tls:
+  - hosts:
+    - deploy.storyscript.io
+    secretName: storyscript.io
+  rules:
+  - host: deploy.storyscript.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: teamcity
+          servicePort: 8111

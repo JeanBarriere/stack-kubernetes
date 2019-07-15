@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: teamcity
+  namespace: asyncy-system
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: teamcity
+        logstash-enabled: "false"
+    spec:
+      containers:
+        - name: teamcity
+          image: jetbrains/teamcity-server:2019.1.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8111
+          resources:
+            limits:
+              memory: 2560M
+            requests:
+              memory: 2560M
+          env:
+            - name: TEAMCITY_SERVER_MEM_OPTS
+              value: "-Xmx1536m"
