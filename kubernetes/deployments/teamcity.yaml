@@ -20,6 +20,11 @@ spec:
           ports:
             - name: http
               containerPort: 8111
+          volumeMounts:
+            - mountPath: /data/teamcity_server/datadir
+              name: teamcity-data
+            - mountPath: /opt/teamcity/logs
+              name: teamcity-logs
           resources:
             limits:
               memory: 2560M
@@ -28,3 +33,10 @@ spec:
           env:
             - name: TEAMCITY_SERVER_MEM_OPTS
               value: "-Xmx1536m"
+      volumes:
+        - name: teamcity-data
+          persistentVolumeClaim:
+            claimName: teamcity-data
+        - name: teamcity-logs
+          persistentVolumeClaim:
+            claimName: teamcity-logs
