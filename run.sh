@@ -86,6 +86,7 @@ istio_install() {
 
 asyncy_install_secrets() {
   read -p "Sentry DSN: " SENTRY_DSN
+  read -p "Sentry DSN (Hub API): " SENTRY_DSN_HUB_API
   read -p "PostgreSQL Host: " PG_HOST
   read -p "PostgreSQL DB Name: " PG_DB_NAME
   read -p "PostgreSQL DB Username: " PG_USERNAME
@@ -113,8 +114,8 @@ asyncy_install_secrets() {
         --from-literal=jdbc-root-uri="$CONNECTION_STRING_URI_JDBC"
   CONNECTION_STRING= CONNECTION_STRING_URI= CONNECTION_STRING_URI_AA= PG_CONN_GRAFANA_URI= CONNECTION_STRING_URI_JDBC= CONNECTION_STRING_URI_WITH_SEARCH_PATH=
 
-  kubectl create secret generic sentry --from-literal=sentry_dsn=$SENTRY_DSN
-  SENTRY_DSN=
+  kubectl create secret generic sentry --from-literal=sentry_dsn=$SENTRY_DSN --from-literal=sentry_hub_api=${SENTRY_DSN_HUB_API}
+  SENTRY_DSN= SENTRY_DSN_HUB_API=
 
   read -p "Full path to privkey.pem (for *.storyscript.io): " PRIV_KEY
   read -p "Full path to fullchain.pem (for *.storyscript.io): " FULLCHAIN

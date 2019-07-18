@@ -28,6 +28,11 @@ spec:
             #             cpu: 100m
             memory: 256M
         env:
+        - name: SENTRY_DSN
+          valueFrom:
+            secretKeyRef:
+              name: sentry
+              key: sentry_hub_api
         - name: PG_CONN_STRING
           valueFrom:
             secretKeyRef:
