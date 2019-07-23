@@ -55,3 +55,13 @@ spec:
               key: token
         - name: ENGINE_HOST
           value: engine.asyncy-system.svc.cluster.local
+        - name: REPORTING_CLEVERTAP_ACCOUNT
+          valueFrom:
+            secretKeyRef:
+              name: clevertap
+              key: staging_account_id
+        - name: REPORTING_CLEVERTAP_PASS
+          valueFrom:
+            secretKeyRef:
+              name: clevertap
+              key: staging_passcode

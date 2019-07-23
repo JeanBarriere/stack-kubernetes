@@ -117,6 +117,20 @@ asyncy_install_secrets() {
   kubectl create secret generic sentry --from-literal=sentry_dsn=$SENTRY_DSN --from-literal=sentry_hub_api=${SENTRY_DSN_HUB_API}
   SENTRY_DSN= SENTRY_DSN_HUB_API=
 
+  read -p "CleverTap account ID (staging): " -s CT_STAGING_ACCOUNT_ID
+  read -p "CleverTap account passcode (staging): " -s CT_STAGING_ACCOUNT_PASSCODE
+  read -p "CleverTap account ID (production): " -s CT_PROD_ACCOUNT_ID
+  read -p "CleverTap account passcode (production): " -s CT_PROD_ACCOUNT_PASSCODE
+  echo
+
+  kubectl create secret generic clevertap \
+        --from-literal=staging_account_id=${CT_STAGING_ACCOUNT_ID} \
+        --from-literal=staging_passcode=${CT_STAGING_ACCOUNT_PASSCODE} \
+        --from-literal=prod_account_id=${CT_PROD_ACCOUNT_ID} \
+        --from-literal=prod_passcode=${CT_PROD_ACCOUNT_PASSCODE}
+
+  CT_STAGING_ACCOUNT_ID= CT_STAGING_ACCOUNT_PASSCODE= CT_PROD_ACCOUNT_ID= CT_PROD_ACCOUNT_PASSCODE=
+
   read -p "Full path to privkey.pem (for *.storyscript.io): " PRIV_KEY
   read -p "Full path to fullchain.pem (for *.storyscript.io): " FULLCHAIN
   kubectl create secret tls storyscript.io --key $PRIV_KEY --cert $FULLCHAIN
