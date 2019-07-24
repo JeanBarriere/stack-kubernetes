@@ -48,6 +48,11 @@ spec:
             secretKeyRef:
               name: github
               key: app_client_secret
+        - name: GITHUB_SECRET_TOKEN_FOR_SHA1
+          valueFrom:
+            secretKeyRef:
+              name: github
+              key: secret_token_for_sha1
         - name: GITHUB_APP_ID
           valueFrom:
             secretKeyRef:
