@@ -140,9 +140,18 @@ asyncy_install_secrets() {
   kubectl create secret tls storyscriptapp.com --key $PRIV_KEY --cert $FULLCHAIN
 
   read -p "GitHub OAuth Token (for the Hub): " GH_TOKEN
-  read -p "GitHub OAuth Client ID (for hub-api): " GH_CLIENT_ID
-  read -p "GitHub OAuth Client Secret (for hub-api): " GH_CLIENT_SECRET
-  kubectl create secret generic github --from-literal=oauth_token="$GH_TOKEN" --from-literal=client_id="$GH_CLIENT_ID" --from-literal=client_secret="$GH_CLIENT_SECRET"
+  read -p "GitHub App ID (for hub-api): " GH_APP_ID
+  read -p "GitHub App Client ID (for hub-api): " GH_CLIENT_ID
+  read -p "GitHub App Client Secret (for hub-api): " GH_CLIENT_SECRET
+  read -p "GitHub App PEM private key (for hub-api): " GH_APP_PEM_PRIVKEY
+  read -p "GitHub App webhook SHA1 secret for verifying payloads (for hub-api): " GH_SECRET_TOKEN_FOR_SHA1
+  kubectl create secret generic github \
+        --from-literal=oauth_token="$GH_TOKEN" \
+        --from-literal=app_id="$GH_APP_ID" \
+        --from-literal=app_client_id="$GH_CLIENT_ID" \
+        --from-literal=app_client_secret="$GH_CLIENT_SECRET" \
+        --from-literal=app_pem_private_key="$GH_APP_PEM_PRIVKEY" \
+        --from-literal=secret_token_for_sha1="${GH_SECRET_TOKEN_FOR_SHA1}"
 
   read -p "JWT cookie secret key (for hub-api): " JWT_SECRET
   kubectl create secret generic hub --from-literal=jwt_secret="$JWT_SECRET"
