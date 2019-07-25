@@ -155,6 +155,9 @@ asyncy_install_secrets() {
 
   read -p "JWT cookie secret key (for hub-api): " JWT_SECRET
   kubectl create secret generic hub --from-literal=jwt_secret="$JWT_SECRET"
+
+  read -p "MailGun production API key: " MAILGUN_API_KEY
+  kubectl create secret generic mailgun --from-literal=prod_api_key="${MAILGUN_API_KEY}"
 }
 
 asyncy_install() {

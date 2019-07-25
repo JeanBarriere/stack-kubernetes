@@ -53,6 +53,11 @@ spec:
             secretKeyRef:
               name: github
               key: secret_token_for_sha1
+        - name: MAILGUN_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: mailgun
+              key: prod_api_key
         - name: GITHUB_APP_ID
           valueFrom:
             secretKeyRef:
