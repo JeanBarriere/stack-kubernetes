@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dashboard-api
+  namespace: asyncy-system
+  labels:
+    app: dashboard-api
+spec:
+  ports:
+  - port: 8090
+    name: root
+    protocol: TCP
+    targetPort: 8090
+  selector:
+    app: dashboard-api

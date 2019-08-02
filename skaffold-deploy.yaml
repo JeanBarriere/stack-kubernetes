@@ -34,6 +34,10 @@ build:
     context: ../logstreamer/
     docker:
       dockerfile: Dockerfile
+  - image: asyncy/dashboard-api
+    context: ../dashboard-api/
+    docker:
+      dockerfile: Dockerfile
   local: {}
 deploy:
   kubectl:

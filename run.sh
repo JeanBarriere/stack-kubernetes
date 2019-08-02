@@ -87,6 +87,7 @@ istio_install() {
 asyncy_install_secrets() {
   read -p "Sentry DSN: " SENTRY_DSN
   read -p "Sentry DSN (Hub API): " SENTRY_DSN_HUB_API
+  read -p "Sentry DSN (Dashboard API): " SENTRY_DSN_DASHBOARD_API
   read -p "PostgreSQL Host: " PG_HOST
   read -p "PostgreSQL DB Name: " PG_DB_NAME
   read -p "PostgreSQL DB Username: " PG_USERNAME
@@ -114,8 +115,11 @@ asyncy_install_secrets() {
         --from-literal=jdbc-root-uri="$CONNECTION_STRING_URI_JDBC"
   CONNECTION_STRING= CONNECTION_STRING_URI= CONNECTION_STRING_URI_AA= PG_CONN_GRAFANA_URI= CONNECTION_STRING_URI_JDBC= CONNECTION_STRING_URI_WITH_SEARCH_PATH=
 
-  kubectl create secret generic sentry --from-literal=sentry_dsn=$SENTRY_DSN --from-literal=sentry_hub_api=${SENTRY_DSN_HUB_API}
-  SENTRY_DSN= SENTRY_DSN_HUB_API=
+  kubectl create secret generic sentry \
+        --from-literal=sentry_dsn=$SENTRY_DSN \
+        --from-literal=sentry_hub_api=${SENTRY_DSN_HUB_API} \
+        --from-literal=sentry_dashboard_api=${SENTRY_DSN_DASHBOARD_API}
+  SENTRY_DSN= SENTRY_DSN_HUB_API= SENTRY_DSN_DASHBOARD_API=
 
   read -p "CleverTap account ID (staging): " -s CT_STAGING_ACCOUNT_ID
   read -p "CleverTap account passcode (staging): " -s CT_STAGING_ACCOUNT_PASSCODE
