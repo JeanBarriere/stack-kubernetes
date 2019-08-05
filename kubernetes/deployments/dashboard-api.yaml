@@ -69,5 +69,7 @@ spec:
               key: jwt_secret
         - name: JWT_ISSUER
           value: api-dashboard
-        - name: AUTH_DEFAULT_REFERRER
+        - name: AUTH_DEFAULT_REFERER
           value: https://dashboard.storyscript.io
+        - name: NODE_ENV
+          value: production
