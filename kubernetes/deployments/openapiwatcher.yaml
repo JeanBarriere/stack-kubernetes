@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: openapiwatcher
+  namespace: asyncy-system
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: openapiwatcher
+        logstash-enabled: "true"
+    spec:
+      containers:
+      - name: openapiwatcher
+        image: asyncy/openapiwatcher
+        args:
+        - /openapiwatcher
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: public
+          containerPort: 9000
+        resources:
+          limits:
+            memory: 64M
+          requests:
+            memory: 64M
+        env:
+        - name: DB_CONNECTION_STRING
+          valueFrom:
+            secretKeyRef:
+              name: database-url
+              key: root-uri-with-search-path
+        - name: SSL_MODE
+          value: disable

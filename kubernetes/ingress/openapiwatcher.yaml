@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: openapiwatcher
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.global-static-ip-name: storyscript-and-storyscriptapp
+    ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/proxy-body-size: 1m
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "120"
+spec:
+  tls:
+  - hosts:
+    - "openapiwatcher.storyscript.io"
+    secretName: storyscript.io
+  rules:
+  - host: "openapiwatcher.storyscript.io"
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: openapiwatcher
+          servicePort: 9000
