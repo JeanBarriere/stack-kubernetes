@@ -38,6 +38,10 @@ build:
     context: ../dashboard-api/
     docker:
       dockerfile: Dockerfile
+  - image: asyncy/openapiwatcher
+    context: ../GOPATH/src/github.com/storyscript/openapiwatcher/
+    docker:
+      dockerfile: Dockerfile
   local: {}
 deploy:
   kubectl:
