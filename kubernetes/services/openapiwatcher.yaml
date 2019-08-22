@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: openapiwatcher
+  namespace: asyncy-system
+  labels:
+    app: openapiwatcher
+spec:
+  ports:
+  - port: 9000
+    name: public
+    protocol: TCP
+    targetPort: 9000
+  selector:
+    app: openapiwatcher
