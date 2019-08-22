@@ -39,7 +39,7 @@ build:
     docker:
       dockerfile: Dockerfile
   - image: asyncy/openapiwatcher
-    context: ../GOPATH/src/github.com/storyscript/openapiwatcher/
+    context: ../openapiwatcher/
     docker:
       dockerfile: Dockerfile
   local: {}
