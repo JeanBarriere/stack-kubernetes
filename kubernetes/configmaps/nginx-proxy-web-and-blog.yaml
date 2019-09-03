@@ -4,6 +4,7 @@ metadata:
   name: nginx-proxy-web-and-blog
   namespace: asyncy-system
 data:
+  proxy-body-size: 20m
   asyncy.com.conf: |-
     upstream product {
         ip_hash;
