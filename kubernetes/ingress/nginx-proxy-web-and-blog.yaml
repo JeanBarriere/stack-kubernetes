@@ -6,7 +6,7 @@ metadata:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/ingress.global-static-ip-name: storyscript-and-storyscriptapp
     ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/proxy-body-size: 20m
+    nginx.ingress.kubernetes.io/proxy-body-size: "20m"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "120"
 spec:
   tls:
